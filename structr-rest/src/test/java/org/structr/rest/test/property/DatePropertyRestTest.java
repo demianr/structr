@@ -48,7 +48,7 @@ public class DatePropertyRestTest extends StructrRestTest {
 			.filter(ResponseLoggingFilter.logResponseIfStatusCodeIs(500))
 		.expect()
 			.statusCode(200)
-			.body("result[0].dateProperty", equalTo("2013-04-05T08:43:40+0000"))
+			.body("result[0].dateProperty", equalTo("2013-04-05T10:43:40+0200"))
 		.when()
 			.get("/test_threes");
 			
@@ -85,7 +85,7 @@ public class DatePropertyRestTest extends StructrRestTest {
 			.filter(ResponseLoggingFilter.logResponseIfStatusCodeIs(500))
 		.expect()
 			.statusCode(200)
-			.body("result[0].dateProperty", equalTo("2013-04-03T10:34:56+0000"))
+			.body("result[0].dateProperty", equalTo("2013-04-03T12:34:56+0200"))
 		.when()
 			.get("/test_threes?dateProperty=2013-04-03T10:34:56+0000");
 	

@@ -106,14 +106,14 @@ public class CsvTest extends StructrCsvTest {
 		System.out.println("result: " + ((RestAssuredResponseImpl) result).prettyPrint());
 
 		String expected =  "\"id\";\"type\";\"name\";\"anInt\";\"aLong\";\"aDate\"\r\n"
-				+ "\"" + test0Id + "\";\"TestOne\";\"TestOne-0\";\"0\";\"0\";\"Mon Sep 17 22:33:12 UTC 2012\"\r\n"
-				+ "\"" + test1Id + "\";\"TestOne\";\"TestOne-1\";\"1\";\"10\";\"Mon Sep 17 23:33:12 UTC 2012\"\r\n"
-				+ "\"" + test2Id + "\";\"TestOne\";\"TestOne-2\";\"2\";\"20\";\"Tue Sep 18 00:33:12 UTC 2012\"\r\n"
-				+ "\"" + test3Id + "\";\"TestOne\";\"TestOne-3\";\"3\";\"30\";\"Tue Sep 18 01:33:12 UTC 2012\"\r\n"
-				+ "\"" + test4Id + "\";\"TestOne\";\"TestOne-4\";\"4\";\"40\";\"Tue Sep 18 02:33:12 UTC 2012\"\r\n"
-				+ "\"" + test5Id + "\";\"TestOne\";\"TestOne-5\";\"5\";\"50\";\"Tue Sep 18 03:33:12 UTC 2012\"\r\n"
-				+ "\"" + test6Id + "\";\"TestOne\";\"TestOne-6\";\"6\";\"60\";\"Tue Sep 18 04:33:12 UTC 2012\"\r\n"
-				+ "\"" + test7Id + "\";\"TestOne\";\"TestOne-7\";\"7\";\"70\";\"Tue Sep 18 05:33:12 UTC 2012\"\r\n";
+				+ "\"" + test0Id + "\";\"TestOne\";\"TestOne-0\";\"0\";\"0\";\"Tue Sep 18 00:33:12 CEST 2012\"\r\n"
+				+ "\"" + test1Id + "\";\"TestOne\";\"TestOne-1\";\"1\";\"10\";\"Tue Sep 18 01:33:12 CEST 2012\"\r\n"
+				+ "\"" + test2Id + "\";\"TestOne\";\"TestOne-2\";\"2\";\"20\";\"Tue Sep 18 02:33:12 CEST 2012\"\r\n"
+				+ "\"" + test3Id + "\";\"TestOne\";\"TestOne-3\";\"3\";\"30\";\"Tue Sep 18 03:33:12 CEST 2012\"\r\n"
+				+ "\"" + test4Id + "\";\"TestOne\";\"TestOne-4\";\"4\";\"40\";\"Tue Sep 18 04:33:12 CEST 2012\"\r\n"
+				+ "\"" + test5Id + "\";\"TestOne\";\"TestOne-5\";\"5\";\"50\";\"Tue Sep 18 05:33:12 CEST 2012\"\r\n"
+				+ "\"" + test6Id + "\";\"TestOne\";\"TestOne-6\";\"6\";\"60\";\"Tue Sep 18 06:33:12 CEST 2012\"\r\n"
+				+ "\"" + test7Id + "\";\"TestOne\";\"TestOne-7\";\"7\";\"70\";\"Tue Sep 18 07:33:12 CEST 2012\"\r\n";
 
 		String resultString = ((RestAssuredResponseImpl) result).asString();
 
@@ -139,8 +139,8 @@ public class CsvTest extends StructrCsvTest {
 		System.out.println("result: " + ((RestAssuredResponseImpl) result).prettyPrint());
 
 		expected = "\"id\";\"type\";\"name\";\"anInt\";\"aLong\";\"aDate\"\r\n"
-			+ "\"" + test0Id + "\";\"TestOne\";\"TestOne-0\";\"0\";\"0\";\"Mon Sep 17 22:33:12 UTC 2012\"\r\n"
-			+ "\"" + test1Id + "\";\"TestOne\";\"TestOne-1\";\"1\";\"10\";\"Mon Sep 17 23:33:12 UTC 2012\"\r\n";
+			+ "\"" + test0Id + "\";\"TestOne\";\"TestOne-0\";\"0\";\"0\";\"Tue Sep 18 00:33:12 CEST 2012\"\r\n"
+			+ "\"" + test1Id + "\";\"TestOne\";\"TestOne-1\";\"1\";\"10\";\"Tue Sep 18 01:33:12 CEST 2012\"\r\n";
 
 
 		resultString = ((RestAssuredResponseImpl) result).asString();
@@ -167,8 +167,8 @@ public class CsvTest extends StructrCsvTest {
 		System.out.println("result: " + ((RestAssuredResponseImpl) result).prettyPrint());
 
 		expected = "\"id\";\"type\";\"name\";\"anInt\";\"aLong\";\"aDate\"\r\n"
-			+ "\"" + test2Id + "\";\"TestOne\";\"TestOne-2\";\"2\";\"20\";\"Tue Sep 18 00:33:12 UTC 2012\"\r\n"
-			+ "\"" + test3Id + "\";\"TestOne\";\"TestOne-3\";\"3\";\"30\";\"Tue Sep 18 01:33:12 UTC 2012\"\r\n";
+			+ "\"" + test2Id + "\";\"TestOne\";\"TestOne-2\";\"2\";\"20\";\"Tue Sep 18 02:33:12 CEST 2012\"\r\n"
+			+ "\"" + test3Id + "\";\"TestOne\";\"TestOne-3\";\"3\";\"30\";\"Tue Sep 18 03:33:12 CEST 2012\"\r\n";
 
 
 

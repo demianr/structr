@@ -75,7 +75,7 @@ public class PropertyViewTest extends StructrRestTest {
 				.body("result[0].name",             equalTo("TestTwo-0"))
 				.body("result[0].anInt",            equalTo(0))
 				.body("result[0].aLong",            equalTo(0))
-				.body("result[0].aDate",            equalTo("2012-09-17T22:33:12+0000"))
+				.body("result[0].aDate",            equalTo("2012-09-18T00:33:12+0200"))
 
 			.when()
 				.get(resource);
@@ -103,7 +103,7 @@ public class PropertyViewTest extends StructrRestTest {
 				.body("result[0].name",                        equalTo("TestTwo-0"))
 				.body("result[0].anInt",                       equalTo(0))
 				.body("result[0].aLong",                       equalTo(0))
-				.body("result[0].aDate",                       equalTo("2012-09-17T22:33:12+0000"))
+				.body("result[0].aDate",                       equalTo("2012-09-18T00:33:12+0200"))
 				.body("result[0].test_ones",                   notNullValue())
 				.body("result[0].base",                        nullValue())
 				.body("result[0].createdDate",                 notNullValue())
