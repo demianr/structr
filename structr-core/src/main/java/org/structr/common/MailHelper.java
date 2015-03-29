@@ -123,8 +123,8 @@ public abstract class MailHelper {
 	 * Parse the template and replace any of the keys in the replacement map by
 	 * the given values
 	 *
-	 * @param template
-	 * @param replacementMap
+	 * @param template the template
+	 * @param replacementMap the Map of replacements (key, value)
 	 * @return template string with included replacements
 	 */
 	public static String replacePlaceHoldersInTemplate(final String template, final Map<String, String> replacementMap) {

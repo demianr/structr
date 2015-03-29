@@ -30,10 +30,10 @@ import org.structr.core.property.Property;
 /**
  * Defines constants for structr's relationship entities.
  *
- * @param <A>
- * @param <B>
- * @param <S>
- * @param <T>
+ * @param <A> the type A
+ * @param <B> the type B
+ * @param <S> the type S
+ * @param <T> the type T
  *
  * @author Christian Morgner
  */

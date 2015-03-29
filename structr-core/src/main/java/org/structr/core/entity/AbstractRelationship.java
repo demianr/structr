@@ -69,8 +69,8 @@ import org.structr.schema.action.ActionContext;
  * Abstract base class for all relationship entities in structr.
  *
  * @author Axel Morgner
- * @param <S>
- * @param <T>
+ * @param <S> the type S
+ * @param <T> the type T
  */
 public abstract class AbstractRelationship<S extends NodeInterface, T extends NodeInterface> implements Comparable<AbstractRelationship>, RelationshipInterface {
 
@@ -430,7 +430,7 @@ public abstract class AbstractRelationship<S extends NodeInterface, T extends No
 	 *
 	 * This is useful f.e. to filter markup from HTML to index only text
 	 *
-	 * @param key
+	 * @param key the PropertyKey
 	 * @return property value for indexing
 	 */
 	@Override

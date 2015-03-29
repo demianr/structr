@@ -91,9 +91,9 @@ public class DatePropertyParser extends PropertyParser {
 	/**
 	 * Static method to catch parse exception
 	 *
-	 * @param source
+	 * @param source the source
 	 * @param pattern optional SimpleDateFormat pattern
-	 * @return
+	 * @return the Date
 	 */
 	public static Date parse(String source, final String pattern) {
 		
@@ -126,7 +126,7 @@ public class DatePropertyParser extends PropertyParser {
 	/**
 	 * Try to parse source string as a ISO8601 date.
 	 * 
-	 * @param source
+	 * @param source the source
 	 * @return null if unable to parse
 	 */
 	public static Date parseISO8601DateString(String source) {
@@ -164,9 +164,9 @@ public class DatePropertyParser extends PropertyParser {
 	 * 
 	 * If no format is given, use the (old) default format.
 	 * 
-	 * @param date
+	 * @param date the Date
 	 * @param format optional SimpleDateFormat pattern
-	 * @return 
+	 * @return the formatted date as String
 	 */
 	public static String format(final Date date, String format) {
 		

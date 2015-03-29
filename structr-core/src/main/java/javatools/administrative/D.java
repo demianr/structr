@@ -42,23 +42,23 @@ import javatools.parsers.Char;
 
  // Here are some tricks with enums
  enum T {a,b,c};
- EnumSet&lt;T> i=D.intersection(EnumSet.of(T.a,T.b),EnumSet.of(T.b,T.c));
- EnumSet&lt;T> u=D.union(EnumSet.of(T.a,T.b),EnumSet.of(T.b,T.c));
+ EnumSet&lt;T&gt; i=D.intersection(EnumSet.of(T.a,T.b),EnumSet.of(T.b,T.c));
+ EnumSet&lt;T&gt; u=D.union(EnumSet.of(T.a,T.b),EnumSet.of(T.b,T.c));
 
  // Here is how to compare things, even if they are NULL
  D.compare(object1, object2);
 
  // Here is how to add something to maps that contain lists
- Map&lt;String,List&lt;String>> string2list=new TreeMap&lt;String,List&lt;String>>();
+ Map&lt;String,List&lt;String&gt;&gt; string2list=new TreeMap&lt;String,List&lt;String&gt;&gt;();
  D.addKeyValue(string2list,"key","new list element",ArrayList.class);
- // now, the map contains "key" -> [ "new list element" ]
+ // now, the map contains "key" -&gt; [ "new list element" ]
  D.addKeyValue(string2list,"key","again a new list element",ArrayList.class);
- // now, the map contains "key" -> [ "new list element", "again a new list element" ]
+ // now, the map contains "key" -&gt; [ "new list element", "again a new list element" ]
 
  // Here is how to add something to maps that contain integers
- Map&lt;String,Integer> string2list=new TreeMap&lt;String,Integer>();
- D.addKeyValue(string2list,"key",7); // map now contains "key" -> 7
- D.addKeyValue(string2list,"key",3); // map now contains "key" -> 10
+ Map&lt;String,Integer&gt; string2list=new TreeMap&lt;String,Integer&gt;();
+ D.addKeyValue(string2list,"key",7); // map now contains "key" -&gt; 7
+ D.addKeyValue(string2list,"key",3); // map now contains "key" -&gt; 10
 
  </PRE>
  */
@@ -73,7 +73,10 @@ public class D {
       System.out.print(" ");
   }
 
-  /** Prints some Objects, returns them */
+  /** Prints some Objects, returns them
+   * @param a the objects
+   * @return the result
+   */
   public static Object p(Object... a) {
     pl(a);
     System.out.println("");
@@ -82,17 +85,25 @@ public class D {
     return (a);
   }
 
-  /** Prints some Objects */
+  /** Prints some Objects
+   * @param a the objects
+   * @return the result
+   */
   public static Object println(Object... a) {
     return (p(a));
   }
 
-  /** Prints some Objects on one line */
+  /** Prints some Objects on one line
+   * @param a the objects
+   */
   public static void pl(Object... a) {
     System.out.print(toString(a));
   }
 
-  /** Prints an array of integers*/
+  /** Prints an array of integers
+   * @param a the integers
+   * @return the result
+   */
   public static int[] p(int[] a) {
     i();
     if (a == null) System.out.print("null-array");
@@ -102,7 +113,10 @@ public class D {
     return (a);
   }
 
-  /** Prints an array of doubles*/
+  /** Prints an array of doubles
+   * @param a the doubles
+   * @return the result
+   */
   public static double[] p(double[] a) {
     i();
     if (a == null) System.out.print("null-array");
@@ -112,7 +126,9 @@ public class D {
     return (a);
   }
 
-  /** Reads a line from the keyboard */
+  /** Reads a line from the keyboard
+   * @return the result
+   */
   public static String r() {
     String s = "";
     i();
@@ -123,36 +139,52 @@ public class D {
     return (s);
   }
 
-  /** Reads a line from the keyboard */
+  /** Reads a line from the keyboard
+   * @return the result
+   */
   public static String read() {
     return (r());
   }
 
-  /** Reads a long from the keyboard */
+  /** Reads a long from the keyboard
+   * @param question the question
+   * @return the result
+   */
   public static String read(String question) {
     System.out.print(question+" ");
     return (D.read());
   }
 
-  /** Reads a long from the keyboard */
+  /** Reads a long from the keyboard
+   * @param question the question
+   * @return true if answered with y*, false if not
+   */
   public static boolean readBoolean(String question) {
     System.out.print(question+" ");
     return (D.read().startsWith("y"));
   }
 
-  /** Reads a long from the keyboard */
+  /** Reads a long from the keyboard
+   * @param question the question
+   * @return the result
+   */
   public static long readLong(String question) {
     System.out.print(question);
     return (Long.parseLong(D.r()));
   }
 
-  /** Reads a double from the keyboard */
+  /** Reads a double from the keyboard
+   * @param question the question
+   * @return the result
+   */
   public static double readDouble(String question) {
     System.out.print(question);
     return (Double.parseDouble(D.r()));
   }
 
-  /** Waits for a number of milliseconds */
+  /** Waits for a number of milliseconds
+   * @param milliseconds the number of milliseconds
+   */
   public static void waitMS(long milliseconds) {
     try {
       Thread.sleep(milliseconds);
@@ -160,7 +192,12 @@ public class D {
     }
   }
 
-  /** Returns the intersection of two enumsets */
+  /** Returns the intersection of two enumsets
+   * @param <E> the type E
+   * @param s1 the first Set
+   * @param s2 the second Set
+   * @return the result
+   */
   public static <E extends Enum<E>> EnumSet<E> intersection(EnumSet<E> s1, EnumSet<E> s2) {
     // We have to clone, since retainAll modifies the set
     EnumSet<E> s = s1.clone();
@@ -171,14 +208,24 @@ public class D {
     return (s);
   }
 
-  /** Returns the union of two enumsets */
+  /** Returns the union of two enumsets
+   * @param <E> the type E
+   * @param s1 the first Set
+   * @param s2 the second Set
+   * @return the result
+   */
   public static <E extends Enum<E>> EnumSet<E> union(EnumSet<E> s1, EnumSet<E> s2) {
     EnumSet<E> s = s1.clone();
     s.addAll(s2);
     return (s);
   }
 
-  /** Tells whether the intersection is non-empty */
+  /** Tells whether the intersection is non-empty
+   * @param <E> the type E
+   * @param s1 the first Set
+   * @param s2 the second Set
+   * @return the result
+   */
   public static <E extends Enum<E>> boolean containsOneOf(EnumSet<E> s1, EnumSet<E> s2) {
     return (!intersection(s1, s2).isEmpty());
   }
@@ -188,13 +235,21 @@ public class D {
     System.exit(0);
   }
 
-  /** Writes a line to a writer. Yes, this is possible */
+  /** Writes a line to a writer. Yes, this is possible
+   * @param out the Writer
+   * @param s the String
+   * @throws IOException on I/O problems
+   */
   public static void writeln(Writer out, Object s) throws IOException {
     out.write(s.toString());
     out.write("\n");
   }
 
-  /** Writes a line to a writer. Yes, this is possible */
+  /** Writes a line to a OutputStream. Yes, this is possible
+   * @param out the OutputStream
+   * @param s the object
+   * @throws IOException on I/O problems
+   */
   public static void writeln(OutputStream out, Object s) throws IOException {
     String string = Char.encodeUTF8(s.toString());
     for (int i = 0; i < string.length(); i++)
@@ -202,7 +257,10 @@ public class D {
     out.write('\n');
   }
 
-  /** Writes a line silently to a writer. */
+  /** Writes a line silently to a writer.
+   * @param out the Writer
+   * @param s the object
+   */
   public static void silentWriteln(Writer out, Object s) {
     try {
       out.write(s.toString());
@@ -211,7 +269,11 @@ public class D {
     }
   }
 
-  /** Executes a command */
+  /** Executes a command
+   * @param cmd the command
+   * @param folder the directory
+   * @throws Exception on exceptions
+   */
   public static void execute(String cmd, File folder) throws Exception {
     Process p = Runtime.getRuntime().exec(cmd, null, folder);
     BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -224,7 +286,16 @@ public class D {
     p.waitFor();
   }
 
-  /** Given a map that maps to collections, adds a new key/value pair or introduces the key*/
+  /** Given a map that maps to collections, adds a new key/value pair or introduces the key
+   * @param <K> the type K
+   * @param <V> the type V
+   * @param <C> the type C
+   * @param <L> the type L
+   * @param map the map
+   * @param key the key
+   * @param value the value
+   * @param collectionType the type of the collection
+   */
   @SuppressWarnings({ "unchecked", "rawtypes" })
   public static <K, V, C extends Collection<V>, L extends Collection> void addKeyValue(Map<K, C> map, K key, V value, Class<L> collectionType) {
     C coll = map.get(key);
@@ -238,13 +309,27 @@ public class D {
     coll.add(value);
   }
 
-  /** Given a map that maps to collections, adds a new key/value pair or introduces the key*/
+  /** Given a map that maps to collections, adds a new key/value pair or introduces the key
+   * @param <K> the type K
+   * @param <V> the type V
+   * @param <C> the type C
+   * @param <L> the type L
+   * @param map the Map
+   * @param key the key
+   * @param values the values
+   * @param collectionType the type of the collection class
+   */
   @SuppressWarnings({ "rawtypes" })
   public static <K, V, C extends Collection<V>, L extends Collection> void addKeyValues(Map<K, C> map, K key, C values, Class<L> collectionType) {
     for(V val : values) addKeyValue(map,key,val,collectionType);
   }
 
-  /** Given a map that maps to integers, adds a new key/value pair or increases the counter*/
+  /** Given a map that maps to integers, adds a new key/value pair or increases the counter
+   * @param <K> the type K
+   * @param map the Map
+   * @param key the key
+   * @param value the value
+   */
   public static <K> void addKeyValue(Map<K, Integer> map, K key, int value) {
     Integer coll = map.get(key);
     if (coll == null) {
@@ -255,7 +340,12 @@ public class D {
     map.put(key, coll + value);
   }
 
-  /** Given a map that maps to floats, adds a new key/value pair or increases the counter*/
+  /** Given a map that maps to floats, adds a new key/value pair or increases the counter
+   * @param <K> the type K
+   * @param map the Map
+   * @param key the key
+   * @param value the value
+   */
   public static <K> void addKeyValueFlt(Map<K, Float> map, K key, float value) {
     Float coll = map.get(key);
     if (coll == null) {
@@ -265,7 +355,12 @@ public class D {
     map.put(key, coll + value);
   }
 
-  /** Given a map that maps to doubles, adds a new key/value pair or increases the counter*/
+  /** Given a map that maps to doubles, adds a new key/value pair or increases the counter
+   * @param <K> the type K
+   * @param map the Map
+   * @param key the key
+   * @param value the value
+   */
   public static <K> void addKeyValueDbl(Map<K, Double> map, K key, double value) {
     Double coll = map.get(key);
     if (coll == null) {
@@ -276,7 +371,13 @@ public class D {
     map.put(key, coll + value);
   }
 
-  /** Given a map that maps to comparable objects, sets a key to a given value iff the current value is null or smaller than the given value*/
+  /** Given a map that maps to comparable objects, sets a key to a given value iff the current value is null or smaller than the given value
+   * @param <K> the type K
+   * @param <V> the type V
+   * @param map the Map
+   * @param key the key
+   * @param value the value
+   */
   public static <K ,V extends Comparable<V>> void setKeyValueIfGreaterThanCurrent(Map<K, V> map, K key, V value) {
     V coll = map.get(key);
     if (coll == null) {
@@ -288,28 +389,49 @@ public class D {
   }
 
 
-  /** Returns the element of a map or 0*/
+  /** Returns the element of a map or 0
+   * @param <K> the type K
+   * @param map the Map
+   * @param key the key
+   * @return the result
+   */
   public static <K> int getOrZero(Map<K, Integer> map, K key) {
     Integer i = map.get(key);
     if (i == null) return (0);
     return (i);
   }
 
-  /** Returns the element of a map or 0*/
+  /** Returns the element of a map or 0
+   * @param <K> the type K
+   * @param map the Map
+   * @param key the key
+   * @return the result
+   */
   public static <K> double getOrZeroDouble(Map<K, Double> map, K key) {
     Double i = map.get(key);
     if (i == null) return (0);
     return (i);
   }
 
-  /** Returns the element of a map or a default value*/
+  /** Returns the element of a map or a default value
+   * @param <K> the type K
+   * @param <V> the type V
+   * @param map the Map
+   * @param key the key
+   * @param defValue the default value
+   * @return the result
+   */
   public static <K,V> V getOr(Map<K, V> map, K key, V defValue) {
     V i = map.get(key);
     if (i == null) return defValue;
     return (i);
   }
 
-  /** Returns a sorted list of the items*/
+  /** Returns a sorted list of the items
+   * @param <T> the type T
+   * @param map the Map
+   * @return the result
+   */
   public static<T> List<T> sorted(final Map<T, Integer> map) {
     List<T> list=new ArrayList<T>(map.keySet());
     Collections.sort(list,new Comparator<T>(){
@@ -321,7 +443,11 @@ public class D {
     return(list);
   }
 
-  /** Returns a sorted list of the items*/
+  /** Returns a sorted list of the items
+   * @param <T> the type T
+   * @param map the Map
+   * @return the result
+   */
   public static<T> List<T> sortedDouble(final Map<T, Double> map) {
     List<T> list=new ArrayList<T>(map.keySet());
     Collections.sort(list,new Comparator<T>(){
@@ -333,7 +459,12 @@ public class D {
     return(list);
   }
 
-  /** Returns true if two things are equal, including NULL */
+  /** Returns true if two things are equal, including NULL
+   * @param <E> the type E
+   * @param s1 the first value
+   * @param s2 the second value
+   * @return true if the supplied values are equal, false if not
+   */
   public static <E> boolean equal(E s1, E s2) {
     if (s1 == s2) return (true);
     if (s1 == null) return (false);
@@ -341,7 +472,12 @@ public class D {
     return (s1.equals(s2));
   }
 
-  /** Compares two things, including NULL */
+  /** Compares two things, including NULL
+   * @param <E> the type E
+   * @param s1 the first value
+   * @param s2 the second value
+   * @return the result
+   */
   public static <E extends Comparable<E>> int compare(E s1, E s2) {
     if (s1 == s2) return (0);
     if (s1 == null) return (-1);
@@ -349,7 +485,10 @@ public class D {
     return (s1.compareTo(s2));
   }
 
-  /** Compares pairs of comparable things (a1,a2,b1,b2,...), including NULL */
+  /** Compares pairs of comparable things (a1,a2,b1,b2,...), including NULL
+   * @param o the pairs
+   * @return the result
+   */
   @SuppressWarnings({ "unchecked", "rawtypes" })
   public static int comparePairs(Object... o) {
     for (int i = 0; i < o.length; i += 2) {
@@ -359,7 +498,10 @@ public class D {
     return (0);
   }
 
-  /** Compares pairs of comparable things (a1,a2,b1,b2,...) for equality, including NULL */
+  /** Compares pairs of comparable things (a1,a2,b1,b2,...) for equality, including NULL
+   * @param o the pairs
+   * @return the result
+   */
   public static boolean equalPairs(Object... o) {
     for (int i = 0; i < o.length; i += 2) {
       if (!equal(o[i], o[i + 1])) return (false);
@@ -367,7 +509,11 @@ public class D {
     return (true);
   }
 
-  /** Returns the index of a thing in an array or -1*/
+  /** Returns the index of a thing in an array or -1
+   * @param o the object
+   * @param os the objects to search in
+   * @return the index or -1 if the object cannot be found
+   */
   public static int indexOf(Object o, Object... os) {
     for (int i = 0; i < os.length; i++) {
       if (D.equal(os[i], o)) return (i);
@@ -375,12 +521,20 @@ public class D {
     return (-1);
   }
 
-  /** TRUE if the first enum is before the second*/
+  /** TRUE if the first enum is before the second
+   * @param <C> the type C
+   * @param e1 the first Enum
+   * @param e2 the second Enum
+   * @return the result
+   */
   public static <C extends Enum<C>> boolean smaller(Enum<C> e1, Enum<C> e2) {
     return (e1.ordinal() < e2.ordinal());
   }
 
-  /** Returns a reasonable String representation of a sequence of things. Handles arrays, deep arrays and NULL.*/
+  /** Returns a reasonable String representation of a sequence of things. Handles arrays, deep arrays and NULL.
+   * @param o the objects
+   * @return the result
+   */
   public static String toString(Object... o) {
     if (o == null) {
       return ("null");
@@ -407,13 +561,22 @@ public class D {
     return (b.toString());
   }
 
-  /** Picks one element from a set or NULL*/
+  /** Picks one element from a set or NULL
+   * @param <T> the type T
+   * @param set the Collection
+   * @return the result
+   */
   public static <T> T pick(Collection<T> set) {
     if(set==null || set.isEmpty()) return(null);
     return(set.iterator().next());
   }
 
-  /** Returns the size of the intersection*/
+  /** Returns the size of the intersection
+   * @param <T> the type T
+   * @param c1 the first Collection
+   * @param c2 the second Collection
+   * @return the size of the intersection
+   */
   public static<T> int intersectionSize(Collection<T> c1, Collection<T> c2) {
 	  if(c1.size()>c2.size()) return(intersectionSize(c2,c1));
 	  int result=0;

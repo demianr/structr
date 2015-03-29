@@ -108,7 +108,7 @@ public class SchemaHelper {
 	 * Tries to normalize (and singularize) the given string so that it
 	 * resolves to an existing entity type.
 	 *
-	 * @param possibleEntityString
+	 * @param possibleEntityString the possible entity String
 	 * @return the normalized entity name in its singular form
 	 */
 	public static String normalizeEntityName(String possibleEntityString) {

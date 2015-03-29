@@ -53,8 +53,9 @@ public class AuthHelper {
 	/**
 	 * Find a {@link Principal} for the given credential
 	 *
-	 * @param key
-	 * @param value
+	 * @param <T> the type T
+	 * @param key the PropertyKey
+	 * @param value the value
 	 * @return principal
 	 */
 	public static <T> Principal getPrincipalForCredential(final PropertyKey<T> key, final T value) {
@@ -83,11 +84,11 @@ public class AuthHelper {
 	/**
 	 * Find a {@link Principal} with matching password and given key or name
 	 *
-	 * @param key
-	 * @param value
-	 * @param password
+	 * @param key the PropertyKey
+	 * @param value the value
+	 * @param password the password
 	 * @return principal
-	 * @throws AuthenticationException
+	 * @throws AuthenticationException on authentication exceptions
 	 */
 	public static Principal getPrincipalForPassword(final PropertyKey<String> key, final String value, final String password) throws AuthenticationException {
 
@@ -180,7 +181,7 @@ public class AuthHelper {
 	/**
 	 * Find a {@link Principal} for the given session id
 	 *
-	 * @param sessionId
+	 * @param sessionId the session ID
 	 * @return principal
 	 */
 	public static Principal getPrincipalForSessionId(final String sessionId) {
@@ -192,8 +193,8 @@ public class AuthHelper {
 	 *
 	 * If salt is given, use salt.
 	 *
-	 * @param password
-	 * @param salt
+	 * @param password the password
+	 * @param salt the salt
 	 * @return hash
 	 */
 	public static String getHash(final String password, final String salt) {
@@ -211,7 +212,7 @@ public class AuthHelper {
 	/**
 	 * Calculate a SHA-512 hash without salt
 	 *
-	 * @param password
+	 * @param password the password
 	 * @return simple hash
 	 * @deprecated Use
 	 * {@link AuthHelper#getHash(java.lang.String, java.lang.String)}
@@ -271,7 +272,7 @@ public class AuthHelper {
 	/**
 	 * Make sure the given sessionId is not set for any user.
 	 *
-	 * @param sessionId
+	 * @param sessionId the session ID
 	 */
 	public static void clearSession(final String sessionId) {
 

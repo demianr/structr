@@ -80,6 +80,7 @@ public class CaseHelper {
 
 	/**
 	 * Test method.
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 

@@ -26,7 +26,7 @@ import org.structr.common.SecurityContext;
  * A validator that can be used to do validation checks on node properties.
  *
  * @author Christian Morgner
- * @param <T>
+ * @param <T> the type T
  */
 public interface PropertyValidator<T> {
 
@@ -34,11 +34,11 @@ public interface PropertyValidator<T> {
 	 * Indicates whether the given value is valid for the given property
 	 * key and parameter.
 	 *
-	 * @param securityContext
-	 * @param object
-	 * @param key
-	 * @param value
-	 * @param errorBuffer
+	 * @param securityContext the SecurityContext
+	 * @param object the GraphObject
+	 * @param key the PropertyKey
+	 * @param value the value to check for validity
+	 * @param errorBuffer the ErrorBuffer
 	 * @return valid
 	 */
 	public boolean isValid(SecurityContext securityContext, GraphObject object, PropertyKey<T> key, T value, ErrorBuffer errorBuffer);

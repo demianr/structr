@@ -59,7 +59,7 @@ public interface FactoryDefinition {
 	 * by the node's surroundings or by a given type property. Its up to the
 	 * user of structr to specify this.
 	 * 
-	 * @param node
+	 * @param node the Node
 	 * @return the entity name as returned by Class.getSimpleName()
 	 */
 	public Class determineNodeType(Node node);
@@ -69,7 +69,7 @@ public interface FactoryDefinition {
 	 * can be defined by the relationship's surroundings or by a given type
 	 * property. Its up to the user of Structr to specify this.
 	 * 
-	 * @param relationship
+	 * @param relationship the Relationship
 	 * @return the entity name as returned by Class.getSimpleName()
 	 */
 	public Class determineRelationshipType(Relationship relationship);

@@ -32,8 +32,8 @@ import org.structr.core.property.StringProperty;
  * Abstract base class for a multi-dimensional linked list data structure.
  *
  * @author Christian Morgner
- * @param <R>
- * @param <T>
+ * @param <R> the type R
+ * @param <T> the type T
  */
 public abstract class LinkedListNode<R extends AbstractListSiblings<T, T>, T extends LinkedListNode> extends ValidatedNode {
 
@@ -46,7 +46,7 @@ public abstract class LinkedListNode<R extends AbstractListSiblings<T, T>, T ext
 	 * Returns the predecessor of the given element in the list structure
 	 * defined by this LinkedListManager.
 	 *
-	 * @param currentElement
+	 * @param currentElement the current element
 	 * @return previous element
 	 */
 	public  T listGetPrevious(final T currentElement) {
@@ -64,7 +64,7 @@ public abstract class LinkedListNode<R extends AbstractListSiblings<T, T>, T ext
 	 * Returns the successor of the given element in the list structure
 	 * defined by this LinkedListManager.
 	 *
-	 * @param currentElement
+	 * @param currentElement the current element
 	 * @return next element
 	 */
 	public T listGetNext(final T currentElement) {
@@ -84,7 +84,7 @@ public abstract class LinkedListNode<R extends AbstractListSiblings<T, T>, T ext
 	 *
 	 * @param currentElement the reference element
 	 * @param newElement the new element
-	 * @throws org.structr.common.error.FrameworkException
+	 * @throws org.structr.common.error.FrameworkException on exceptions
 	 */
 	public void listInsertBefore(final T currentElement, final T newElement) throws FrameworkException {
 
@@ -119,6 +119,7 @@ public abstract class LinkedListNode<R extends AbstractListSiblings<T, T>, T ext
 	 *
 	 * @param currentElement the reference element
 	 * @param newElement the new element
+	 * @throws FrameworkException on exceptions
 	 */
 	public void listInsertAfter(final T currentElement, final T newElement) throws FrameworkException {
 
@@ -153,6 +154,7 @@ public abstract class LinkedListNode<R extends AbstractListSiblings<T, T>, T ext
 	 * LinkedListManager.
 	 *
 	 * @param currentElement the element to be removed
+	 * @throws FrameworkException on exceptions
 	 */
 	public void listRemove(final T currentElement) throws FrameworkException {
 

@@ -33,6 +33,7 @@ public interface Adapter<S, T>
 	 *
 	 * @param s the source class
 	 * @return the target class
+	 * @throws FrameworkException on exceptions
 	 */
 	public T adapt(S s) throws FrameworkException;
 }

@@ -49,9 +49,9 @@ public abstract class PropertyConverter<S, T> {
 	 * Converts from destination type to source type. Caution: source
 	 * will be null if there is no value in the database.
 	 *
-	 * @param source
+	 * @param source the source
 	 * @return reverted source
-	 * @throws org.structr.common.error.FrameworkException
+	 * @throws org.structr.common.error.FrameworkException on exceptions
 	 */
 	public abstract S revert(T source) throws FrameworkException;
 
@@ -59,9 +59,9 @@ public abstract class PropertyConverter<S, T> {
 	 * Converts from source type to destination type. Caution: source
 	 * will be null if there is no value in the database.
 	 *
-	 * @param source
+	 * @param source the source
 	 * @return converted source
-	 * @throws org.structr.common.error.FrameworkException
+	 * @throws org.structr.common.error.FrameworkException on exceptions
 	 */
 	public abstract T convert(S source) throws FrameworkException;
 
@@ -70,9 +70,9 @@ public abstract class PropertyConverter<S, T> {
 	 * fine-grained control over the sorted results. Override
 	 * this method to modify sorting behaviour of entities.
 	 *
-	 * @param source
+	 * @param source the source
 	 * @return converted source
-	 * @throws org.structr.common.error.FrameworkException
+	 * @throws org.structr.common.error.FrameworkException on exceptions
 	 */
 	public Comparable convertForSorting(S source) throws FrameworkException {
 

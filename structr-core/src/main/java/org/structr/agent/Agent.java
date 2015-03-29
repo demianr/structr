@@ -257,7 +257,9 @@ public abstract class Agent extends Thread implements StatusInfo {
 
 	/**
 	 * This method will be called by the AgentService
-	 * @param task
+	 * @param task the Task
+	 * @return the return value
+	 * @throws Throwable any Exception that might be thrown by task
 	 */
 	public abstract ReturnValue processTask(Task task) throws Throwable;
 

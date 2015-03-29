@@ -60,8 +60,8 @@ public class EndNode<S extends NodeInterface, T extends NodeInterface> extends P
 	 * the given relationship type, the given direction and the given cascade delete
 	 * flag.
 	 *
-	 * @param name
-	 * @param relationClass
+	 * @param name the name
+	 * @param relationClass the relation class
 	 */
 	public EndNode(String name, Class<? extends Relation<S, T, ? extends Source, OneEndpoint<T>>> relationClass) {
 		this(name, relationClass, new ObjectNotion());
@@ -71,9 +71,9 @@ public class EndNode<S extends NodeInterface, T extends NodeInterface> extends P
 	 * Constructs an entity property with the given name, the given destination type,
 	 * the given relationship type, the given direction and the given notion.
 	 *
-	 * @param name
-	 * @param relationClass
-	 * @param notion
+	 * @param name the name
+	 * @param relationClass the relation class
+	 * @param notion the Notion
 	 */
 	public EndNode(String name, Class<? extends Relation<S, T, ? extends Source, OneEndpoint<T>>> relationClass, Notion notion) {
 

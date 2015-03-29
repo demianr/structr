@@ -35,7 +35,7 @@ import org.structr.core.graph.search.SearchAttribute;
  * Base interface for typed property keys.
  *
  * @author Christian Morgner
- * @param <T>
+ * @param <T> the type T
  */
 public interface PropertyKey<T> {
 
@@ -58,7 +58,7 @@ public interface PropertyKey<T> {
 	 * is the key under which the property will be found in the
 	 * JSON input/output.
 	 *
-	 * @param jsonName
+	 * @param jsonName the JSON name
 	 */
 	public void jsonName(String jsonName);
 
@@ -67,7 +67,7 @@ public interface PropertyKey<T> {
 	 * is the key under which the property will be stored in the
 	 * database.
 	 *
-	 * @param dbName
+	 * @param dbName the database name
 	 */
 	public void dbName(String dbName);
 
@@ -93,7 +93,7 @@ public interface PropertyKey<T> {
 	 * Use this method to mark a property for indexing
 	 * in the given index.
 	 *
-	 * @param nodeIndex
+	 * @param nodeIndex the NodeIndex
 	 * @return the Property to satisfy the builder pattern
 	 */
 	public Property<T> indexed(NodeService.NodeIndex nodeIndex);
@@ -102,7 +102,7 @@ public interface PropertyKey<T> {
 	 * Use this method to mark a property for indexing
 	 * in the given index.
 	 *
-	 * @param relIndex
+	 * @param relIndex the RelationshipIndex
 	 * @return the Property to satisfy the builder pattern
 	 */
 	public Property<T> indexed(NodeService.RelationshipIndex relIndex);
@@ -125,7 +125,7 @@ public interface PropertyKey<T> {
 	 * the given property to be indexed at the end of a transaction instead
 	 * of immediately on setProperty().
 	 *
-	 * @param nodeIndex
+	 * @param nodeIndex the NodeIndex
 	 * @return the Property to satisfy the builder pattern
 	 */
 	public Property<T> passivelyIndexed(NodeService.NodeIndex nodeIndex);
@@ -136,7 +136,7 @@ public interface PropertyKey<T> {
 	 * the given property to be indexed at the end of a transaction instead
 	 * of immediately on setProperty().
 	 *
-	 * @param relIndex
+	 * @param relIndex the RelationshipIndex
 	 * @return the Property to satisfy the builder pattern
 	 */
 	public Property<T> passivelyIndexed(NodeService.RelationshipIndex relIndex);

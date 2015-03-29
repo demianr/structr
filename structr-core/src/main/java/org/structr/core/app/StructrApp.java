@@ -314,7 +314,7 @@ public class StructrApp implements App {
 	 * Constructs a new stateful App instance, initialized with the given
 	 * security context.
 	 *
-	 * @param securityContext
+	 * @param securityContext the SecurityContext
 	 * @return app instance
 	 */
 	public static App getInstance(final SecurityContext securityContext) {

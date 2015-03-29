@@ -152,8 +152,8 @@ public class Services {
 	 * Creates and returns a command of the given <code>type</code>. If a command is
 	 * found, the corresponding service will be discovered and activated.
 	 *
-	 * @param <T>
-	 * @param securityContext
+	 * @param <T> the type T
+	 * @param securityContext the SecurityContext
 	 * @param commandType the runtime type of the desired command
 	 * @return the command
 	 */
@@ -453,8 +453,8 @@ public class Services {
 	/**
 	 * Store an attribute value in the service config
 	 *
-	 * @param name
-	 * @param value
+	 * @param name the name
+	 * @param value the value
 	 */
 	public void setAttribute(final String name, final Object value) {
 		synchronized (attributes) {
@@ -465,7 +465,7 @@ public class Services {
 	/**
 	 * Retrieve attribute value from service config
 	 *
-	 * @param name
+	 * @param name the name
 	 * @return attribute
 	 */
 	public Object getAttribute(final String name) {
@@ -475,7 +475,7 @@ public class Services {
 	/**
 	 * Remove attribute value from service config
 	 *
-	 * @param name
+	 * @param name the name
 	 */
 	public void removeAttribute(final String name) {
 		attributes.remove(name);
@@ -565,7 +565,7 @@ public class Services {
 	 * Return true if the given service is ready to be used,
          * means initialized and running.
 	 *
-	 * @param serviceClass
+	 * @param serviceClass the service class
 	 * @return isReady
 	 */
 	public boolean isReady(final Class serviceClass) {

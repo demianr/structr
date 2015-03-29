@@ -34,7 +34,7 @@ public interface Service {
 	 * the user. Use this method to inject service-specific resources into your command
 	 * objects so you can access them later in the <code>execute()</code> method.
 	 *
-	 * @param command
+	 * @param command the Command
 	 */
 	public void injectArguments(Command command);
 
@@ -42,11 +42,11 @@ public interface Service {
 	 * Called {@link Services} after the service is instantiated to initialize
 	 * service-specific resources etc.
 	 *
-	 * @param config
+	 * @param config the StructrConf object
 	 *
-	 * @throws ClassNotFoundException
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
+	 * @throws ClassNotFoundException when a Class cannot be found
+	 * @throws InstantiationException on instantiation problems
+	 * @throws IllegalAccessException on security exceptions
 	 */
 	public void initialize(final StructrConf config) throws ClassNotFoundException, InstantiationException, IllegalAccessException;
 

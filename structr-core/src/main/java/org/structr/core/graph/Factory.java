@@ -95,9 +95,9 @@ public abstract class Factory<S, T extends GraphObject> implements Adapter<S, T>
 	 * Create structr nodes from all given underlying database nodes
 	 * No paging, but security check
 	 *
-	 * @param input
+	 * @param input the Iterable
 	 * @return result
-	 * @throws org.structr.common.error.FrameworkException
+	 * @throws org.structr.common.error.FrameworkException on exceptions
 	 */
 	public Result instantiateAll(final Iterable<S> input) throws FrameworkException {
 
@@ -113,9 +113,9 @@ public abstract class Factory<S, T extends GraphObject> implements Adapter<S, T>
 	 * If includeDeletedAndHidden is true, include nodes with 'deleted' flag
 	 * If publicOnly is true, filter by 'visibleToPublicUsers' flag
 	 *
-	 * @param input
+	 * @param input the IndexHits
 	 * @return result
-	 * @throws org.structr.common.error.FrameworkException
+	 * @throws org.structr.common.error.FrameworkException on exceptions
 	 */
 	public Result instantiate(final IndexHits<S> input) throws FrameworkException {
 
@@ -144,9 +144,9 @@ public abstract class Factory<S, T extends GraphObject> implements Adapter<S, T>
 	 * Create structr nodes from all given underlying database nodes
 	 * No paging, but security check
 	 *
-	 * @param input
+	 * @param input the Iterable
 	 * @return nodes
-	 * @throws org.structr.common.error.FrameworkException
+	 * @throws org.structr.common.error.FrameworkException on exceptions
 	 */
 	public List<T> bulkInstantiate(final Iterable<S> input) throws FrameworkException {
 

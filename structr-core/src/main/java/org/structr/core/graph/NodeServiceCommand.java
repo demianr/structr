@@ -51,14 +51,14 @@ public abstract class NodeServiceCommand extends Command {
 	/**
 	 * Executes the given operation on all nodes in the given list.
 	 *
-	 * @param <T>
-	 * @param securityContext
+	 * @param <T> the type T
+	 * @param securityContext the SecurityContext
 	 * @param nodes the nodes to operate on
-	 * @param commitCount
-	 * @param description
+	 * @param commitCount the commit count
+	 * @param description the description
 	 * @param operation the operation to execute
 	 * @return the number of nodes processed
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public static <T extends GraphObject> long bulkGraphOperation(final SecurityContext securityContext, final Iterable<T> nodes, final long commitCount, String description, final BulkGraphOperation<T> operation) throws FrameworkException {
 		return bulkGraphOperation(securityContext, nodes, commitCount, description, operation, true);
@@ -66,15 +66,15 @@ public abstract class NodeServiceCommand extends Command {
 	/**
 	 * Executes the given operation on all nodes in the given list.
 	 *
-	 * @param <T>
-	 * @param securityContext
+	 * @param <T> the type T
+	 * @param securityContext the SecurityContext
 	 * @param nodes the nodes to operate on
-	 * @param commitCount
-	 * @param description
+	 * @param commitCount the commit count
+	 * @param description the description
 	 * @param operation the operation to execute
-	 * @param validation
+	 * @param validation whether validation should be performed
 	 * @return the number of nodes processed
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public static <T extends GraphObject> long bulkGraphOperation(final SecurityContext securityContext, final Iterable<T> nodes, final long commitCount, String description, final BulkGraphOperation<T> operation, boolean validation) throws FrameworkException {
 
@@ -125,11 +125,11 @@ public abstract class NodeServiceCommand extends Command {
 	 * Executes the given transaction until the stop condition evaluates to
 	 * <b>true</b>.
 	 *
-	 * @param securityContext
+	 * @param securityContext the SecurityContext
 	 * @param commitCount the number of executions after which the transaction is committed
 	 * @param transaction the operation to execute
-	 * @param stopCondition
-	 * @throws FrameworkException
+	 * @param stopCondition a Predicate that denotes when to stop
+	 * @throws FrameworkException on exceptions
 	 */
 	public static void bulkTransaction(final SecurityContext securityContext, final long commitCount, final StructrTransaction transaction, final Predicate<Long> stopCondition) throws FrameworkException {
 

@@ -171,10 +171,10 @@ public class GroupProperty extends Property<PropertyMap> implements PropertyGrou
 	 * this method can be used to get and/or set the property value in a PropertyMap that
 	 * is obtained or stored in the group property.
 	 *
-	 * @param <T>
-	 * @param name
-	 * @param type
-	 * @return property
+	 * @param <T> the type T
+	 * @param name the name
+	 * @param type the type of the class
+	 * @return the PropertyKey
 	 */
 	public <T> PropertyKey<T> getNestedProperty(String name, Class<T> type) {
 
@@ -189,9 +189,9 @@ public class GroupProperty extends Property<PropertyMap> implements PropertyGrou
 	 * Returns a wrapped group property that can be used to access a nested group
 	 * property directly, i.e. without having to fetch the group first.
 	 *
-	 * @param <T>
-	 * @param name
-	 * @param type
+	 * @param <T> the type T
+	 * @param name the name
+	 * @param type the type of the class
 	 * @return property
 	 */
 	public <T> PropertyKey<T> getDirectAccessGroupProperty(String name, Class<T> type) {

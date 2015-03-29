@@ -35,7 +35,7 @@ public abstract class Transformation<T> implements Comparable<Transformation<T>>
 	 * @param securityContext the current security context
 	 * @param obj the object to transform
 	 * 
-	 * @throws FrameworkException 
+	 * @throws FrameworkException on Exceptions this exception will be thrown
 	 */
 	public abstract void apply(SecurityContext securityContext, T obj) throws FrameworkException;
 	

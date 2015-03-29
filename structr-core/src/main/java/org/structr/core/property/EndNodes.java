@@ -62,8 +62,8 @@ public class EndNodes<S extends NodeInterface, T extends NodeInterface> extends 
 	/**
 	 * Constructs a collection property with the given name, the given destination type and the given relationship type.
 	 *
-	 * @param name
-	 * @param relationClass
+	 * @param name the name
+	 * @param relationClass the Relation
 	 */
 	public EndNodes(final String name, final Class<? extends Relation<S, T, ? extends Source, ManyEndpoint<T>>> relationClass) {
 		this(name, relationClass, new ObjectNotion());
@@ -72,9 +72,9 @@ public class EndNodes<S extends NodeInterface, T extends NodeInterface> extends 
 	/**
 	 * Constructs a collection property with the given name, the given destination type and the given relationship type.
 	 *
-	 * @param name
-	 * @param relationClass
-	 * @param notion
+	 * @param name the name
+	 * @param relationClass the Relation
+	 * @param notion the Notion
 	 */
 	public EndNodes(final String name, final Class<? extends Relation<S, T, ? extends Source, ManyEndpoint<T>>> relationClass, final Notion notion) {
 

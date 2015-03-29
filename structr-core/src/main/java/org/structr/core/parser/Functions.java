@@ -3732,7 +3732,7 @@ public class Functions {
 	 * Test if the given object array has a minimum length and all its
 	 * elements are not null.
 	 *
-	 * @param array
+	 * @param array an array of Objects
 	 * @param minLength If null, don't do length check
 	 * @return true if array has min length and all elements are not null
 	 */
@@ -3758,7 +3758,7 @@ public class Functions {
 	 * Test if the given object array has exact the given length and all its
 	 * elements are not null.
 	 *
-	 * @param array
+	 * @param array an array of Objects
 	 * @param length If null, don't do length check
 	 * @return true if array has exact length and all elements are not null
 	 */

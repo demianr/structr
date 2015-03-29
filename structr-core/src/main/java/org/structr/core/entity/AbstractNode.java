@@ -274,6 +274,7 @@ public abstract class AbstractNode implements NodeInterface, AccessControllable 
 	 * Get name from underlying db node
 	 *
 	 * If name is null, return node id as fallback
+	 * @return the name
 	 */
 	@Override
 	public String getName() {
@@ -288,6 +289,7 @@ public abstract class AbstractNode implements NodeInterface, AccessControllable 
 
 	/**
 	 * Get id from underlying db
+	 * @return the id
 	 */
 	@Override
 	public long getId() {
@@ -360,7 +362,7 @@ public abstract class AbstractNode implements NodeInterface, AccessControllable 
 	/**
 	 * Returns the property set for the given view as an Iterable.
 	 *
-	 * @param propertyView
+	 * @param propertyView the property view
 	 * @return the property set for the given view
 	 */
 	@Override
@@ -392,7 +394,7 @@ public abstract class AbstractNode implements NodeInterface, AccessControllable 
 	 * This is useful f.e. to filter markup from HTML to index only text, or
 	 * to get dates as long values.
 	 *
-	 * @param key
+	 * @param key the PropertyKey
 	 * @return property value for indexing
 	 */
 	@Override
@@ -410,7 +412,7 @@ public abstract class AbstractNode implements NodeInterface, AccessControllable 
 	 * Returns the (converted, validated, transformed, etc.) property for
 	 * the given property key.
 	 *
-	 * @param <T>
+	 * @param <T> the type T
 	 * @param key the property key to retrieve the value for
 	 * @return the converted, validated, transformed property value
 	 */
@@ -455,6 +457,7 @@ public abstract class AbstractNode implements NodeInterface, AccessControllable 
 	/**
 	 * Returns the property value for the given key as a Comparable
 	 *
+	 * @param <T> the type T
 	 * @param key the property key to retrieve the value for
 	 * @return the property value for the given key as a Comparable
 	 */
@@ -543,7 +546,7 @@ public abstract class AbstractNode implements NodeInterface, AccessControllable 
 	 * Return the (cached) incoming relationship between this node and the
 	 * given principal which holds the security information.
 	 *
-	 * @param p
+	 * @param p the Principal
 	 * @return incoming security relationship
 	 */
 	@Override
@@ -645,8 +648,9 @@ public abstract class AbstractNode implements NodeInterface, AccessControllable 
 	/**
 	 * Return statistical information on all relationships of this node
 	 *
-	 * @param dir
+	 * @param dir the Direction
 	 * @return number of relationships
+	 * @throws FrameworkException on exceptions
 	 */
 	public Map<RelationshipType, Long> getRelationshipInfo(final Direction dir) throws FrameworkException {
 		return StructrApp.getInstance(securityContext).command(NodeRelationshipStatisticsCommand.class).execute(this, dir);
@@ -710,12 +714,12 @@ public abstract class AbstractNode implements NodeInterface, AccessControllable 
 	 * Return true if this node has a relationship of given type and
 	 * direction.
 	 *
-	 * @param <A>
-	 * @param <B>
-	 * @param <S>
-	 * @param <T>
-	 * @param type
-	 * @return relationships
+	 * @param <A> the type A
+	 * @param <B> the Type B
+	 * @param <S> the source
+	 * @param <T> the target
+	 * @param type a Class to test for the Relationship
+	 * @return relationships true if there is a Relationship
 	 */
 	public <A extends NodeInterface, B extends NodeInterface, S extends Source, T extends Target> boolean hasRelationship(final Class<? extends Relation<A, B, S, T>> type) {
 		return this.getRelationships(type).iterator().hasNext();
@@ -950,9 +954,9 @@ public abstract class AbstractNode implements NodeInterface, AccessControllable 
 	 * into a StructrTransaction, otherwise Neo4j will throw a
 	 * NotInTransactionException! Set property only if value has changed.
 	 *
-	 * @param <T>
-	 * @param key
-	 * @throws org.structr.common.error.FrameworkException
+	 * @param <T> the type T
+	 * @param key the PropertyKey
+	 * @throws org.structr.common.error.FrameworkException on exceptions
 	 */
 	@Override
 	public <T> void setProperty(final PropertyKey<T> key, final T value) throws FrameworkException {

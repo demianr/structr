@@ -83,7 +83,7 @@ public interface GraphObject {
 	/**
 	 * Sets the security context to be used by this entity.
 	 *
-	 * @param securityContext
+	 * @param securityContext the SecurityContext
 	 */
 	public void setSecurityContext(final SecurityContext securityContext);
 
@@ -104,7 +104,7 @@ public interface GraphObject {
 	/**
 	 * Returns the property set for the given view as an Iterable.
 	 *
-	 * @param propertyView
+	 * @param propertyView the property view
 	 * @return the property set for the given view
 	 */
 	public Iterable<PropertyKey> getPropertyKeys(String propertyView);
@@ -112,10 +112,10 @@ public interface GraphObject {
 	/**
 	 * Sets the property with the given key to the given value.
 	 *
-	 * @param <T>
+	 * @param <T> the type T
 	 * @param key the property key to set
 	 * @param value the value to set
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public <T> void setProperty(final PropertyKey<T> key, T value) throws FrameworkException;
 
@@ -123,7 +123,7 @@ public interface GraphObject {
 	 * Returns the (converted, validated, transformed, etc.) property for the given
 	 * property key.
 	 *
-	 * @param <T>
+	 * @param <T> the type T
 	 * @param propertyKey the property key to retrieve the value for
 	 * @return the converted, validated, transformed property value
 	 */
@@ -133,7 +133,7 @@ public interface GraphObject {
 	 * Returns the (converted, validated, transformed, etc.) property for the given
 	 * property key with the given filter applied to it.
 	 *
-	 * @param <T>
+	 * @param <T> the type T
 	 * @param propertyKey the property key to retrieve the value for
 	 * @param filter the filter to apply to all properties
 	 * @return the converted, validated, transformed property value
@@ -143,7 +143,7 @@ public interface GraphObject {
 	/**
 	 * Returns the property value for the given key as a Comparable
 	 *
-	 * @param <T>
+	 * @param <T> the type T
 	 * @param key the property key to retrieve the value for
 	 * @return the property value for the given key as a Comparable
 	 */
@@ -162,7 +162,7 @@ public interface GraphObject {
 	 * Removes the property value for the given key from this graph object.
 	 *
 	 * @param key the key to remove the value for
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public void removeProperty(final PropertyKey key) throws FrameworkException;
 
@@ -195,7 +195,7 @@ public interface GraphObject {
 	 * @param securityContext the context in which the creation takes place
 	 * @param errorBuffer the error buffer to put error tokens into
 	 * @return true if the transaction can go on, false if an error occurred
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public boolean onCreation(final SecurityContext securityContext, final ErrorBuffer errorBuffer) throws FrameworkException;
 
@@ -207,7 +207,7 @@ public interface GraphObject {
 	 * @param securityContext the context in which the modification takes place
 	 * @param errorBuffer the error buffer to put error tokens into
 	 * @return true if the transaction can go on, false if an error occurred
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public boolean onModification(final SecurityContext securityContext, final ErrorBuffer errorBuffer) throws FrameworkException;
 
@@ -218,9 +218,9 @@ public interface GraphObject {
 	 *
 	 * @param securityContext the context in which the deletion takes place
 	 * @param errorBuffer the error buffer to put error tokens into
-	 * @param properties
+	 * @param properties the PropertyMap
 	 * @return true if the transaction can go on, false if an error occurred
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public boolean onDeletion(final SecurityContext securityContext, final ErrorBuffer errorBuffer, final PropertyMap properties) throws FrameworkException;
 
@@ -248,7 +248,7 @@ public interface GraphObject {
 	 * deletion.
 	 *
 	 * @param securityContext the context in which the deletion took place
-	 * @param properties
+	 * @param properties the PropertyMap
 	 */
 	public void afterDeletion(final SecurityContext securityContext, final PropertyMap properties);
 
@@ -282,7 +282,7 @@ public interface GraphObject {
 	/**
 	 * Called when a non-local modification occurred in the neighbourhood of this node.
 	 *
-	 * @param securityContext
+	 * @param securityContext the SecurityContext
 	 */
 	public void propagatedModification(final SecurityContext securityContext);
 

@@ -95,8 +95,8 @@ public class PathHelper {
 	/**
 	 * Assemble a relative path for the given absolute paths
 	 *
-	 * @param basePath
-	 * @param targetPath
+	 * @param basePath the base path
+	 * @param targetPath the target path
 	 * @return relative node path
 	 */
 	public static String getRelativeNodePath(String basePath, String targetPath) {
@@ -179,8 +179,8 @@ public class PathHelper {
 	/**
 	 * Return last part of path after separator or the path if no path separator was found.
 	 * 
-	 * @param path
-	 * @return name
+	 * @param path the path
+	 * @return the name
 	 */
 	public static String getName(final String path) {
 
@@ -200,7 +200,7 @@ public class PathHelper {
 	/**
 	 * Return array of path parts.
 	 * 
-	 * @param path
+	 * @param path the path
 	 * @return path parts
 	 */
 	public static String[] getParts(final String path) {

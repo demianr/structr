@@ -14,18 +14,20 @@ the YAGO-NAGA team (see http://mpii.de/yago-naga).
 Provides a nicer constructor for a TreeMap. 
 Example:
 <PRE>
-   FinalMap<String,Integer> f=new FinalMap(
+   FinalMap&lt;String,Integer&gt; f=new FinalMap(
      "a",1,
      "b",2,
      "c",3);
    System.out.println(f.get("b"));
-   --> 2
+   --&gt; 2
 </PRE>
 */
 public class FinalMap<T1 extends Comparable,T2> extends TreeMap<T1,T2>{
 	private static final long serialVersionUID = 1L;
 
-/** Constructs a FinalMap from an array that contains key/value sequences */  
+/** Constructs a FinalMap from an array that contains key/value sequences
+ * @param a the objects to use for the Map
+ */  
   @SuppressWarnings("unchecked")
   public FinalMap(Object... a) {
     super();    
@@ -35,7 +37,9 @@ public class FinalMap<T1 extends Comparable,T2> extends TreeMap<T1,T2>{
     }
   }
   
-  /** Test routine */
+  /** Test routine
+   * @param args the arguments
+   */
   public static void main(String[] args) {
     FinalMap<String,Integer> f=new FinalMap<String,Integer>("a",1,"b",2);
     System.out.println(f.get("b"));

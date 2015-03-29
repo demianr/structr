@@ -40,7 +40,7 @@ import org.structr.schema.SchemaHelper;
 /**
  * Change the property key from the old to the new value on all nodes matching the type.
  *
- * Example: "email":"foo@bar.com" => "eMail":"foo@bar.com"
+ * Example: "email":"foo@bar.com" =&gt; "eMail":"foo@bar.com"
  *
  * If no type property is found, change the property key on all nodes.
  * If a property with the new key is already present, the command will abort.

@@ -44,7 +44,7 @@ public class ClassFileManager extends ForwardingJavaFileManager {
 	 * Will initialize the manager with the specified standard java file
 	 * manager
 	 *
-	 * @param standardManager
+	 * @param standardManager the StandardJavaFileManager
 	 */
 	public ClassFileManager(final StandardJavaFileManager standardManager) {
 		super(standardManager);
@@ -55,7 +55,7 @@ public class ClassFileManager extends ForwardingJavaFileManager {
 	 * creates an anonymous class extending the SecureClassLoader which uses
 	 * the byte code created by the compiler and stored in the
 	 * JavaClassObject, and returns the Class for it
-	 * @param location
+	 * @param location the Location
 	 * @return class loader
 	 */
 	@Override
@@ -81,12 +81,12 @@ public class ClassFileManager extends ForwardingJavaFileManager {
 	/**
 	 * Gives the compiler an instance of the JavaClassObject so that the
 	 * compiler can write the byte code into it.
-	 * @param location
-	 * @param className
-	 * @param kind
-	 * @param sibling
+	 * @param location the Location
+	 * @param className the class name
+	 * @param kind the Kind
+	 * @param sibling the FileObject
 	 * @return file object
-	 * @throws java.io.IOException
+	 * @throws java.io.IOException on I/O problems
 	 */
 	@Override
 	public JavaFileObject getJavaFileForOutput(final Location location, final String className, final Kind kind, final FileObject sibling) throws IOException {

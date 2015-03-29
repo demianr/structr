@@ -263,10 +263,10 @@ public class ValidationHelper {
 	 * Checks whether the value of the given property key of the given node
 	 * if not null and matches the given regular expression.
 	 * 
-	 * @param node
-	 * @param key
-	 * @param expression
-	 * @param errorBuffer
+	 * @param node the GraphObject
+	 * @param key the PropertyKey
+	 * @param expression the expression
+	 * @param errorBuffer the ErrorBuffer
 	 * @return true if string matches expression
 	 */
 	public static boolean checkStringMatchesRegex(final GraphObject node, final PropertyKey<String> key, final String expression, final ErrorBuffer errorBuffer) {
@@ -287,7 +287,7 @@ public class ValidationHelper {
 	 * is a valid enum value of the given type. In case of an error, the
 	 * type identifiery in typeString is used for the error message.
 	 * 
-	 * @param typeString
+	 * @param typeString the type
 	 * @param node the node
 	 * @param key the property key
 	 * @param enumType the enum type to check against

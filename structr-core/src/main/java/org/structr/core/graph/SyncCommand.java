@@ -156,10 +156,10 @@ public class SyncCommand extends NodeServiceCommand implements MaintenanceComman
 	/**
 	 * Exports the whole structr database to a file with the given name.
 	 *
-	 * @param graphDb
-	 * @param fileName
-	 * @param includeFiles
-	 * @throws FrameworkException
+	 * @param graphDb the GraphDatabaseService
+	 * @param fileName the filename
+	 * @param includeFiles whether to include files or not
+	 * @throws FrameworkException on exceptions
 	 */
 	public static void exportToFile(final GraphDatabaseService graphDb, final String fileName, final boolean includeFiles) throws FrameworkException {
 
@@ -187,12 +187,12 @@ public class SyncCommand extends NodeServiceCommand implements MaintenanceComman
 	/**
 	 * Exports the given part of the structr database to a file with the given name.
 	 *
-	 * @param fileName
-	 * @param nodes
-	 * @param relationships
-	 * @param filePaths
-	 * @param includeFiles
-	 * @throws FrameworkException
+	 * @param fileName the filename
+	 * @param nodes a Iterable of nodes
+	 * @param relationships a Iterable of Relations
+	 * @param filePaths a Iterable of file paths
+	 * @param includeFiles whether to include files or not
+	 * @throws FrameworkException on exceptions
 	 */
 	public static void exportToFile(final String fileName, final Iterable<? extends NodeInterface> nodes, final Iterable<? extends RelationshipInterface> relationships, final Iterable<String> filePaths, final boolean includeFiles) throws FrameworkException {
 
@@ -211,12 +211,12 @@ public class SyncCommand extends NodeServiceCommand implements MaintenanceComman
 	/**
 	 * Exports the given part of the structr database to the given output stream.
 	 *
-	 * @param outputStream
-	 * @param nodes
-	 * @param relationships
-	 * @param filePaths
-	 * @param includeFiles
-	 * @throws FrameworkException
+	 * @param outputStream the OutputStream
+	 * @param nodes the nodes as Iterable
+	 * @param relationships the Relationships as Iterable
+	 * @param filePaths the file paths as Iterable
+	 * @param includeFiles whether to include files or not
+	 * @throws FrameworkException on exceptions
 	 */
 	public static void exportToStream(final OutputStream outputStream, final Iterable<? extends NodeInterface> nodes, final Iterable<? extends RelationshipInterface> relationships, final Iterable<String> filePaths, final boolean includeFiles) throws FrameworkException {
 
@@ -307,8 +307,9 @@ public class SyncCommand extends NodeServiceCommand implements MaintenanceComman
 	 * length field follows. After that, the length field is serialized, followed by the
 	 * string value of the given object and a space character for human readability.
 	 *
-	 * @param outputStream
-	 * @param obj
+	 * @param outputStream the OutputStream
+	 * @param data array of bytes to write to the supplied OutputStream
+	 * @throws IOException on I/O problems
 	 */
 	public static void serializeData(DataOutputStream outputStream, byte[] data) throws IOException {
 

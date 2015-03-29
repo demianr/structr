@@ -56,10 +56,10 @@ public class GeoHelper {
 	/**
 	 * Creates a Location entity for the given geocoding result and returns it.
 	 * 
-	 * @param coords
+	 * @param coords the GeoCodingResult to use
 	 * @return a Location entity for the given geocoding result
 	 * 
-	 * @throws FrameworkException 
+	 * @throws FrameworkException on problems creating the Location
 	 */
 	public static Location createLocation(final GeoCodingResult coords) throws FrameworkException {
 
@@ -90,16 +90,17 @@ public class GeoHelper {
 	/**
 	 * Tries do find a geo location for the given address using the GeoCodingProvider
 	 * specified in the configuration file. 
-
+     *
+	 * @param street the street
+	 * @param house the house
+	 * @param postalCode the postal code
+	 * @param city the city
+	 * @param state the state
 	 * @param country the country to search for, may be null
-	 * @param state the state to search for, may be null
-	 * @param city the city to search for, may be null
-	 * @param street the street to search for, may be null
-	 * @param house the house to search for, may be null
 	 *
 	 * @return the geolocation of the given address, or null
 	 * 
-	 * @throws FrameworkException 
+	 * @throws FrameworkException on problems geocoding using the GeoCodingProvider
 	 */
 	public static GeoCodingResult geocode(final String street, final String house, String postalCode, final String city, final String state, final String country) throws FrameworkException {
 		

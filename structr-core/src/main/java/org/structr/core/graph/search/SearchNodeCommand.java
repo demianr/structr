@@ -37,19 +37,19 @@ import org.structr.core.graph.NodeService;
  * Search for nodes by their attributes.
  * <p>
  * The execute method takes four parameters:
- * <p>
+ * </p>
  * <ol>
  * <li>top node: search only below this node
  *     <p>if null, search everywhere (top node = root node)
  * <li>boolean include deleted and hidden: if true, return deleted and hidden nodes as well
  * <li>boolean public only: if true, return only public nodes
- * <li>List&lt;TextualSearchAttribute> search attributes: key/value pairs with search operator
+ * <li>List&lt;TextualSearchAttribute&gt; search attributes: key/value pairs with search operator
  *    <p>if no TextualSearchAttribute is given, return any node matching the other
  *       search criteria
  * </ol>
  *
  * @author Axel Morgner
- * @param <T>
+ * @param <T> the type T
  */
 public class SearchNodeCommand<T extends NodeInterface> extends SearchCommand<Node, T> {
 

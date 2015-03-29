@@ -41,10 +41,10 @@ public class GraphMergeHelper {
 	 * Merge new nodes into original nodes including all relationships and
 	 * properties
 	 *
-	 * @param <T>
-	 * @param newNodes
-	 * @param origNodes
-	 * @param shadowIdPropertyKey
+	 * @param <T> the type T
+	 * @param newNodes the Set of new nodes of type T
+	 * @param origNodes the Set of original nodes of type T
+	 * @param shadowIdPropertyKey the shadowId property key
 	 */
 	public static <T extends NodeInterface> void merge(final Set<T> origNodes, final Set<T> newNodes, final PropertyKey shadowIdPropertyKey) {
 

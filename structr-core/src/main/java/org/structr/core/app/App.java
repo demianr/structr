@@ -91,7 +91,7 @@ public interface App  {
 	 * transaction to access the database.
 	 *
 	 * @return a 32 character UUID
-	 * @throws org.structr.common.error.FrameworkException
+	 * @throws org.structr.common.error.FrameworkException on exceptions
 	 */
 	public String getInstanceId() throws FrameworkException;
 }

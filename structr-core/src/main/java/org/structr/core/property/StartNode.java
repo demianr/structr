@@ -62,8 +62,8 @@ public class StartNode<S extends NodeInterface, T extends NodeInterface> extends
 	 * the given relationship type, the given direction and the given cascade delete
 	 * flag.
 	 *
-	 * @param name
-	 * @param relationClass
+	 * @param name the name
+	 * @param relationClass the Relation
 	 */
 	public StartNode(String name, Class<? extends Relation<S, T, OneStartpoint<S>, ? extends Target>> relationClass) {
 		this(name, relationClass, new ObjectNotion());
@@ -75,9 +75,9 @@ public class StartNode<S extends NodeInterface, T extends NodeInterface> extends
 	 * the given cascade delete flag, the given notion and the given cascade
 	 * delete flag.
 	 *
-	 * @param name
-	 * @param relationClass
-	 * @param notion
+	 * @param name the name
+	 * @param relationClass the Relation
+	 * @param notion the Notion
 	 */
 	public StartNode(String name, Class<? extends Relation<S, T, OneStartpoint<S>, ? extends Target>> relationClass, Notion notion) {
 

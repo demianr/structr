@@ -41,7 +41,7 @@ import org.structr.core.app.StructrApp;
  * used operation.
  *
  * @author Axel Morgner
- * @param <T>
+ * @param <T> the type T
  */
 public class RelationshipFactory<T extends RelationshipInterface> extends Factory<Relationship, T> {
 
@@ -114,8 +114,9 @@ public class RelationshipFactory<T extends RelationshipInterface> extends Factor
 	/**
 	 * Create structr relationship from all given underlying database rels
 	 *
-	 * @param input
+	 * @param input the Iterable
 	 * @return relationship
+	 * @throws FrameworkException on exceptions
 	 */
 	public List<T> instantiate(final Iterable<Relationship> input) throws FrameworkException {
 

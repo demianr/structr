@@ -42,11 +42,11 @@ public class PagingHelper {
 	/**
 	 * Return a single page of the list with the given paging parameters.
 	 *
-	 * @param list
-	 * @param pageSize
-	 * @param page
-	 * @param offsetId
-	 * @return subList
+	 * @param list the List of GraphObjects
+	 * @param pageSize the page size
+	 * @param page the page number
+	 * @param offsetId the offset as String
+	 * @return subList the resulting List of GraphObjects
 	 */
 	public static List<? extends GraphObject> subList(final List<? extends GraphObject> list, int pageSize, int page, String offsetId) {
 
@@ -115,11 +115,11 @@ public class PagingHelper {
 	/**
 	 * Return a single page of the result with the given paging parameters.
 	 *
-	 * @param result
-	 * @param pageSize
-	 * @param page
-	 * @param offsetId
-	 * @return subResult
+	 * @param result the Result
+	 * @param pageSize the page size
+	 * @param page the page number
+	 * @param offsetId the offset as String
+	 * @return subResult the Result
 	 */
 	public static Result subResult(final Result result, int pageSize, int page, String offsetId) {
 

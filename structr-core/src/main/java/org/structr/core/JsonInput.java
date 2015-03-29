@@ -25,7 +25,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 /**
- * Wrapper class for JSON input via {@link JsonRestServlet}.
+ * Wrapper class for JSON input via @see JsonRestServlet.
  *
  * @author Christian Morgner
  */

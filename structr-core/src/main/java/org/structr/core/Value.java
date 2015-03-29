@@ -34,7 +34,7 @@ public interface Value<T> {
 	 * 
 	 * @param securityContext the security context
 	 * @param value the value to be set
-	 * @throws FrameworkException 
+	 * @throws FrameworkException on exceptions
 	 */
 	public void set(SecurityContext securityContext, T value) throws FrameworkException;
 	

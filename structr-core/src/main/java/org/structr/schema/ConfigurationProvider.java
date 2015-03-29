@@ -105,16 +105,16 @@ public interface ConfigurationProvider {
 	/**
 	 * Registers the given property with the given type.
 	 *
-	 * @param type
-	 * @param propertyKey
+	 * @param type the type as Class
+	 * @param propertyKey the PropertyKey
 	 */
 	public void registerProperty(final Class type, final PropertyKey propertyKey);
 
 	/**
 	 * Registers the given property with the given type AND ALL SUPERTYPES.
 	 *
-	 * @param type
-	 * @param propertyKey
+	 * @param type the type as Class
+	 * @param propertyKey the PropertyKey
 	 */
 	public void registerDynamicProperty(final Class type, final PropertyKey propertyKey);
 }

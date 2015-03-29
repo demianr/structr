@@ -26,7 +26,7 @@ import org.structr.core.notion.PropertyNotion;
  * A property that wraps a PropertyNotion with the entity's UUID around an EntityProperty.
  *
  * @author Christian Morgner
- * @param <S>
+ * @param <S> the type S
  */
 public class EntityIdProperty<S extends AbstractNode> extends EntityNotionProperty<S, String> {
 	

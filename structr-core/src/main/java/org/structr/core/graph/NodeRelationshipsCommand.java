@@ -49,12 +49,12 @@ public class NodeRelationshipsCommand extends NodeServiceCommand {
 	/**
 	 * Fetch relationships for the given source node.
 	 * 
-	 * @param sourceNode
+	 * @param sourceNode the source node
 	 * @param relType can be null
-	 * @param dir
+	 * @param dir the Direction
 	 * 
 	 * @return a list of relationships
-	 * @throws FrameworkException 
+	 * @throws FrameworkException on exceptions
 	 */
 	public List<RelationshipInterface> execute(NodeInterface sourceNode, RelationshipType relType, Direction dir) throws FrameworkException {
 

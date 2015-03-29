@@ -43,8 +43,8 @@ public interface Authenticator {
 	 * Set a boolean flag to indicate that a user should be created
 	 * automatically on registration and after successful authentification.
 	 * 
-	 * @param userAutoCreate 
-	 * @param userClass
+	 * @param userAutoCreate whether to automatically create the user or not
+	 * @param userClass the class to use
 	 */
 	public void setUserAutoCreate(final boolean userAutoCreate, final Class userClass);
 
@@ -59,8 +59,8 @@ public interface Authenticator {
 	 * Set a boolean flag to indicate that a user should be logged in
 	 * automatically on successful registration.
 	 * 
-	 * @param userAutoLogin 
-	 * @param userClass
+	 * @param userAutoLogin whether to automatically create a user
+	 * @param userClass the Class to use
 	 */
 	public void setUserAutoLogin(final boolean userAutoLogin, final Class userClass);
 
@@ -80,20 +80,20 @@ public interface Authenticator {
 	/**
 	 * Initializes the authenticator with data from the given request.
 	 * 
-	 * @param request
-	 * @param response
-	 * @return securityContext
-	 * @throws FrameworkException 
+	 * @param request the request
+	 * @param response the response
+	 * @return securityContext the SecurityContext
+	 * @throws FrameworkException on exceptions
 	 */
 	public SecurityContext initializeAndExamineRequest(final HttpServletRequest request, HttpServletResponse response) throws FrameworkException;
 	
 	/**
 	 * 
-	 * @param securityContext
-	 * @param request
-	 * @param resourceSignature
-	 * @param propertyView
-	 * @throws FrameworkException 
+	 * @param securityContext the SecurityContext
+	 * @param request the request
+	 * @param resourceSignature the resource signature
+	 * @param propertyView the propery view
+	 * @throws FrameworkException on exceptions
 	 */
 	public void checkResourceAccess(final SecurityContext securityContext, final HttpServletRequest request, final String resourceSignature, final String propertyView) throws FrameworkException;
 	
@@ -106,7 +106,7 @@ public interface Authenticator {
 	 * @param password the (optional) password
 	 * 
 	 * @return the user that was just logged in
-	 * @throws AuthenticationException
+	 * @throws AuthenticationException on a authentication exception
 	 */
 	public Principal doLogin(final HttpServletRequest request, final String emailOrUsername, final String password) throws AuthenticationException;
 
@@ -124,7 +124,7 @@ public interface Authenticator {
 	 * @param request the request
 	 * @param tryLogin if true, try to login the user
 	 * @return the logged-in user or null
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public Principal getUser(final HttpServletRequest request, final boolean tryLogin) throws FrameworkException;
 }

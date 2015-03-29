@@ -41,8 +41,8 @@ public interface AccessControllable {
 	/**
 	 * Return true if principal has the given permission on this object.
 	 *
-	 * @param permission
-	 * @param securityContext
+	 * @param permission the Permission
+	 * @param securityContext the SecurityContext
 	 *
 	 * @return whether the security context has the given permissions on this node
 	 */
@@ -57,7 +57,7 @@ public interface AccessControllable {
 	 * Return the (cached) incoming relationship between this node and the
 	 * given principal which holds the security information.
 	 *
-	 * @param principal
+	 * @param principal the Principal
 	 * @return incoming security relationship
 	 */
 	public Security getSecurityRelationship(final Principal principal);

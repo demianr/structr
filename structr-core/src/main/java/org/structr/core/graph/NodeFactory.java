@@ -205,7 +205,7 @@ public class NodeFactory<T extends NodeInterface & AccessControllable> extends F
 	/**
 	 * Return all nodes which are connected by an incoming IS_AT relationships
 	 *
-	 * @param locationNode
+	 * @param locationNode the NodeInterface
 	 * @return connected nodes
 	 */
 	protected List<NodeInterface> getNodesAt(final NodeInterface locationNode) {

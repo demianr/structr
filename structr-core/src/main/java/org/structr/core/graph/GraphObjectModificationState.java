@@ -188,11 +188,11 @@ public class GraphObjectModificationState implements ModificationEvent {
 	/**
 	 * Call beforeModification/Creation/Deletion methods.
 	 *
-	 * @param modificationQueue
-	 * @param securityContext
-	 * @param errorBuffer
+	 * @param modificationQueue the ModificationQueue
+	 * @param securityContext the SecurityContext
+	 * @param errorBuffer the ErrorBuffer
 	 * @return valid
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public boolean doInnerCallback(ModificationQueue modificationQueue, SecurityContext securityContext, ErrorBuffer errorBuffer) throws FrameworkException {
 
@@ -268,12 +268,12 @@ public class GraphObjectModificationState implements ModificationEvent {
 	/**
 	 * Call beforeModification/Creation/Deletion methods.
 	 *
-	 * @param modificationQueue
-	 * @param securityContext
-	 * @param errorBuffer
-	 * @param doValidation
+	 * @param modificationQueue the ModificationQueue
+	 * @param securityContext the SecurityContext
+	 * @param errorBuffer the ErrorBuffer
+	 * @param doValidation whether validation should be performed
 	 * @return valid
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public boolean doValidationAndIndexing(ModificationQueue modificationQueue, SecurityContext securityContext, ErrorBuffer errorBuffer, boolean doValidation) throws FrameworkException {
 
@@ -317,7 +317,7 @@ public class GraphObjectModificationState implements ModificationEvent {
 	/**
 	 * Call afterModification/Creation/Deletion methods.
 	 *
-	 * @param securityContext
+	 * @param securityContext the SecurityContext
 	 */
 	public void doOuterCallback(SecurityContext securityContext) {
 

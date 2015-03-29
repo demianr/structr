@@ -40,7 +40,6 @@ the YAGO-NAGA team (see http://mpii.de/yago-naga).
    <LI>all ligatures (0xFB00-0xFB06, the nasty things you get when you copy/paste from PDFs) to
        the separate characters
   </UL>
-  <P>
   <CENTER><H3>Usage</H3></CENTER>
   <P>
   <B>Decoding</B> is done by methods that "eat" a code from the string.
@@ -50,7 +49,7 @@ the YAGO-NAGA team (see http://mpii.de/yago-naga).
   <PRE>
      int[] eatLength=new int[1];
      char c=eatPercentage("%2Cblah blah",eatLength);
-     -->  c=','
+     --&gt;  c=','
           eatLength[0]=3  // the code was 3 characters long
   </PRE>
   There is a static integer array Char.eatLength, which you can use for this purpose.
@@ -63,7 +62,7 @@ the YAGO-NAGA team (see http://mpii.de/yago-naga).
   Example:
   <PRE>
      decode("This String contains some codes: &amp;amp; %2C \ u0041");
-     --> "This String contains some codes: &amp; , A"
+     --&gt; "This String contains some codes: &amp; , A"
   </PRE>
   <P>
   <B>Normalization</B> is done by the method <TT>normalize(int c)</TT>. It converts a Unicode 
@@ -74,13 +73,13 @@ the YAGO-NAGA team (see http://mpii.de/yago-naga).
   Example:
   <PRE>
     normalize('&auml;');
-    --> "ae"
+    --&gt; "ae"
   </PRE>  
   The method <TT>normalize(String)</TT>  normalizes all characters in a String.<BR>
   Example:
   <PRE>
      normalize("This String contains the umlauts �, � and �");
-     -->  "This String contains the umlauts Ae, Oe and Ue"
+     --&gt;  "This String contains the umlauts Ae, Oe and Ue"
   </PRE>
   If the method cannot find a normalization, it calls defaultNormalizer.apply(char c).
   Decoding and normalizing can be combined by the method decodeAndNormalize(String s).
@@ -92,13 +91,13 @@ the YAGO-NAGA team (see http://mpii.de/yago-naga).
   Example:
   <PRE>
      encodePercentage('�');
-     -->  "%C4"
+     --&gt;  "%C4"
   </PRE>  
   There are also methods that work on entire Strings<BR>
   Example:
   <PRE>
      encodePercentage("This String contains the umlauts �, � and �");
-     -->  "This String contains the umlauts %C4, %D6 and %DC;"
+     --&gt;  "This String contains the umlauts %C4, %D6 and %DC;"
   </PRE>  
   <P>
   Last, this class provides the character categorization for URIs, as given in
@@ -107,9 +106,9 @@ the YAGO-NAGA team (see http://mpii.de/yago-naga).
   Example:
   <PRE>
      isReserved(';');
-     -->  true
+     --&gt;  true
      encodeURIPathComponent("a: b")
-     -->  "a:%20b"
+     --&gt;  "a:%20b"
   </PRE>    
  */
 public class Char {
@@ -117,7 +116,10 @@ public class Char {
   /** Defines just one function from an int to a String */
   public interface Char2StringFn {
 
-    /** Function from a char to a String */
+    /** Function from a char to a String
+     * @param c the character
+     * @return the result
+     */
     String apply(char c);
   }
 
@@ -590,7 +592,10 @@ public class Char {
    *  Returns a String, because some characters are
     * normalized to multiple characters (e.g. umlauts) and
     * some characters are normalized to zero characters (e.g. special Unicode space chars).
-    * Returns null for the EndOfFile character -1 */
+    * Returns null for the EndOfFile character -1
+    * @param c the character
+    * @return the result
+    */
   public static String normalize(int c) {
     // EOF
     if (c == -1) return (null);
@@ -649,7 +654,11 @@ public class Char {
 
   /** Eats a String of the form "%xx" from a string, where
    * xx is a hexadecimal code. If xx is a UTF8 code start, 
-   * tries to complete the UTF8-code and decodes it.*/
+   * tries to complete the UTF8-code and decodes it.
+   * @param a the string
+   * @param n the array of characters
+   * @return the character
+   */
   public static char eatPercentage(String a, int[] n) {
     // Length 0
     if (!a.startsWith("%") || a.length() < 3) {
@@ -685,7 +694,11 @@ public class Char {
     return (utf8);
   }
 
-  /** Eats an HTML ampersand code from a String*/
+  /** Eats an HTML ampersand code from a String
+   * @param a the String
+   * @param n array of characters
+   * @return the result
+   */
   public static char eatAmpersand(String a, int[] n) {
     n[0] = 0;
     if (!a.startsWith("&")) return ((char) 0);
@@ -730,7 +743,10 @@ public class Char {
 
   /** Tells from the first UTF-8 code character how long the code is.
    * Returns -1 if the character is not an UTF-8 code start.
-   * Returns 1 if the character is ASCII<128*/
+   * Returns 1 if the character is ASCII&lt;128
+   * @param c the character
+   * @return the length
+   */
   public static int Utf8Length(char c) {
     // 0xxx xxxx
     if ((c & 0x80) == 0x00) return (1);
@@ -744,7 +760,11 @@ public class Char {
   }
 
   /** Eats a UTF8 code from a String. There is also a built-in way in Java that converts
-   * UTF8 to characters and back, but it does not work with all characters. */
+   * UTF8 to characters and back, but it does not work with all characters.
+   * @param a the String
+   * @param n the array of characters
+   * @return the result
+   */
   public static char eatUtf8(String a, int[] n) {
     if (a.length() == 0) {
       n[0] = 0;
@@ -770,7 +790,10 @@ public class Char {
     return ((char) 0);
   }
 
-  /** Decodes all UTF8 characters in the string*/
+  /** Decodes all UTF8 characters in the string
+   * @param s the String
+   * @return the result
+   */
   public static String decodeUTF8(String s) {
     StringBuilder result = new StringBuilder();
     int[] eatLength = new int[1];
@@ -787,7 +810,10 @@ public class Char {
     return (result.toString());
   }
 
-  /** Decodes all percentage characters in the string*/
+  /** Decodes all percentage characters in the string
+   * @param s the String
+   * @return the result
+   */
   public static String decodePercentage(String s) {
     StringBuilder result = new StringBuilder();
     int[] eatLength = new int[1];
@@ -804,7 +830,10 @@ public class Char {
     return (result.toString());
   }
 
-  /** Fabian: This method cannot decode numeric hexadecimal ampersand codes. What is its purpose? TODO*/
+  /** Fabian: This method cannot decode numeric hexadecimal ampersand codes. What is its purpose? TODO
+   * @param s the String
+   * @return the result
+   */
   public static String decodeAmpersand_UNKNOWN(String s) {
     if (s == null) {
       return null;
@@ -934,7 +963,10 @@ public class Char {
     return sb.toString();
   }
 
-  /** Decodes all ampersand sequences in the string*/
+  /** Decodes all ampersand sequences in the string
+   * @param s the String
+   * @return the result
+   */
   public static String decodeAmpersand(String s) {
     if(s==null || s.indexOf('&')==-1) return(s);
     StringBuilder result = new StringBuilder();
@@ -952,7 +984,10 @@ public class Char {
     return (result.toString());
   }
 
-  /** Decodes all backslash characters in the string */
+  /** Decodes all backslash characters in the string
+   * @param s the String
+   * @return the result
+   */
   public static String decodeBackslash(String s) {
 	  if(s==null || s.indexOf('\\')==-1) return(s);
     StringBuilder result = new StringBuilder();
@@ -975,7 +1010,11 @@ public class Char {
 	  public boolean isLegal(char c);
   }
   
-  /** Encodes with backslash all illegal characters*/
+  /** Encodes with backslash all illegal characters
+   * @param s the characters
+   * @param legal the Legal
+   * @return the result
+   */
   public static String encodeBackslash(CharSequence s, Legal legal) {
 	StringBuilder b=new StringBuilder((int)(s.length()*1.5));
 	for(int i=0;i<s.length();i++) {
@@ -996,7 +1035,11 @@ public class Char {
 	return(b.toString());
   }
   
-  /** Eats a backslash sequence from a String */
+  /** Eats a backslash sequence from a String
+   * @param a the String
+   * @param n the characters
+   * @return the result
+   */
   public static char eatBackslash(String a, int[] n) {
     if (!a.startsWith("\\")) {
       n[0] = 0;
@@ -1071,7 +1114,10 @@ public class Char {
     return ((char) 0);
   }
 
-  /** Replaces all codes in a String by the 16 bit Unicode characters */
+  /** Replaces all codes in a String by the 16 bit Unicode characters
+   * @param s the String
+   * @return the result
+   */
   public static String decode(String s) {
     StringBuilder b = new StringBuilder();
     int[] eatLength = new int[1];
@@ -1096,7 +1142,10 @@ public class Char {
     return (b.toString());
   }
 
-  /** Encodes a character to UTF8 (if necessary)*/
+  /** Encodes a character to UTF8 (if necessary)
+   * @param c the character
+   * @return the result
+   */
   public static String encodeUTF8(int c) {
     if (c <= 0x7F) return ("" + (char) c);
     if (c <= 0x7FF) return ("" + (char) (0xC0 + ((c >> 6) & 0x1F)) + (char) (0x80 + (c & 0x3F)));
@@ -1104,7 +1153,10 @@ public class Char {
     return ("" + c);
   }
 
-  /** Encodes a character to a backslash code (if necessary)*/
+  /** Encodes a character to a backslash code (if necessary)
+   * @param c the character
+   * @return the result
+   */
   public static String encodeBackslash(char c) {
     if (isAlphanumeric(c) || c == ' ') return ("" + c);
     String hex = Integer.toHexString(c);
@@ -1113,7 +1165,10 @@ public class Char {
     return ("\\u" + hex);
   }
 
-  /** Encodes a character to a backslash code (if not alphanumeric)*/
+  /** Encodes a character to a backslash code (if not alphanumeric)
+   * @param c the character
+   * @return the result
+   */
   public static String encodeBackslashToAlphanumeric(char c) {
     if (isAlphanumeric(c) || c == '_') return ("" + c);
     String hex = Integer.toHexString(c);
@@ -1122,7 +1177,10 @@ public class Char {
     return ("\\u" + hex);
   }
 
-  /** Encodes a character to a backslash code (if not ASCII)*/
+  /** Encodes a character to a backslash code (if not ASCII)
+   * @param c the character
+   * @return the result
+   */
   public static String encodeBackslashToASCII(char c) {
     if (c >= 32 && c < 128 && c != '\\' && c != '"') return ("" + c);
     String hex = Integer.toHexString(c);
@@ -1131,7 +1189,10 @@ public class Char {
     return ("\\u" + hex);
   }
 
-  /** Encodes a character to an HTML-Ampersand code (if necessary)*/
+  /** Encodes a character to an HTML-Ampersand code (if necessary)
+   * @param c the character
+   * @return the result
+   */
   public static String encodeAmpersand(char c) {
     String s;
     if (null != (s = charToAmpersand.get(c))) return (s);
@@ -1139,7 +1200,10 @@ public class Char {
     else return ("&#" + ((int) c) + ";");
   }
 
-  /** Encodes a character to an HTML-Ampersand code (if necessary)*/
+  /** Encodes a character to an HTML-Ampersand code (if necessary)
+   * @param c the character
+   * @return the result
+   */
   public static String encodeAmpersandToAlphanumeric(char c) {
     if (isAlphanumeric(c) || c == '_') return ("" + c);
     return ("&#" + ((int) c) + ";");
@@ -1147,7 +1211,10 @@ public class Char {
 
   /** Encodes a character to an Percentage code (if necessary).
    * If the character is greater than 0x80, the character is converted to
-   * a UTF8-sequence and this sequence is encoded as percentage codes. */
+   * a UTF8-sequence and this sequence is encoded as percentage codes.
+   * @param c the character
+   * @return the result
+   */
   public static String encodePercentage(char c) {
     if (isAlphanumeric(c)) return ("" + c);
     if (c < 16) return ("%0" + Integer.toHexString(c).toUpperCase());
@@ -1162,8 +1229,8 @@ public class Char {
 
   /**
    * Encodes a String with reserved XML characters into a valid xml string for attributes.  
-   * @param str
-   * @return 
+   * @param str the string
+   * @return the result
    */
   public static String encodeXmlAttribute(String str) {
     if (str == null) return null;
@@ -1182,58 +1249,94 @@ public class Char {
     return encoded.toString();
   }
 
-  /** Tells whether a char is in a range*/
+  /** Tells whether a char is in a range
+   * @param c the character
+   * @param a the start of the range
+   * @param b the end of the range
+   * @return true if the character sits within the range, false if not
+   */
   public static boolean in(char c, char a, char b) {
     return (c >= a && c <= b);
   }
 
-  /** Tells whether a char is in a string*/
+  /** Tells whether a char is in a string
+   * @param c the character
+   * @param s the String
+   * @return true if the character appears in the supplied String, false if not
+   */
   public static boolean in(char c, String s) {
     return (s.indexOf(c) != -1);
   }
 
-  /** Tells whether a char is alphanumeric in the sense of URIs*/
+  /** Tells whether a char is alphanumeric in the sense of URIs
+   * @param c the character
+   * @return true if the character is alphanumeric, false if not
+   */
   public static boolean isAlphanumeric(char c) {
     return (in(c, 'a', 'z') || in(c, 'A', 'Z') || in(c, '0', '9'));
   }
 
-  /** Tells whether a char is reserved in the sense of URIs*/
+  /** Tells whether a char is reserved in the sense of URIs
+   * @param c the character
+   * @return true if the supplied character is a reserved character, false if not
+   */
   public static boolean isReserved(char c) {
     return (isSubDelim(c) || isGenDelim(c));
   }
 
-  /** Tells whether a char is unreserved in the sense of URIs (not the same as !reserved)*/
+  /** Tells whether a char is unreserved in the sense of URIs (not the same as !reserved)
+   * @param c the character
+   * @return true if the character is not a reserved character, false if it is
+   */
   public static boolean isUnreserved(char c) {
     return (isAlphanumeric(c) || in(c, "-._~"));
   }
 
-  /** Tells whether a string is escaped in the sense of URIs*/
+  /** Tells whether a string is escaped in the sense of URIs
+   * @param s the String
+   * @return true if the supplied string contains escaped characters, false if not
+   */
   public static boolean isEscaped(String s) {
     return (s.matches("%[0-9A-Fa-f]{2}"));
   }
 
-  /** Tells whether a char is a sub-delimiter in the sense of URIs*/
+  /** Tells whether a char is a sub-delimiter in the sense of URIs
+   * @param c the character
+   * @return true if the supplied character is a sub-delimeter, false if not
+   */
   public static boolean isSubDelim(char c) {
     return (in(c, "!$&'()*+,="));
   }
 
-  /** Tells whether a char is a general delimiter in the sense of URIs*/
+  /** Tells whether a char is a general delimiter in the sense of URIs
+   * @param c the character
+   * @return true if the supplied character is a general delimiter, false if not
+   */
   public static boolean isGenDelim(char c) {
     return (in(c, ":/?#[]@"));
   }
 
-  /** Tells whether a char is a valid path component in the sense of URIs*/
+  /** Tells whether a char is a valid path component in the sense of URIs
+   * @param c the character
+   * @return true if the supplied character is valid in a path component, false if not
+   */
   public static boolean isPchar(char c) {
     return (isUnreserved(c) || isSubDelim(c) || in(c, "@"));
   }
 
-  /** Encodes a char to percentage code, if it is not a path character in the sense of URIs*/
+  /** Encodes a char to percentage code, if it is not a path character in the sense of URIs
+   * @param c the character
+   * @return the encoded result as String
+   */
   public static String encodeURIPathComponent(char c) {
     if (isPchar(c)) return ("" + c);
     else return (Char.encodePercentage(c));
   }
 
-  /** Encodes a char to percentage code, if it is not a path character in the sense of URIs*/
+  /** Encodes a char to percentage code, if it is not a path character in the sense of URIs
+   * @param s the String
+   * @return the encoded URI Path component
+   */
   public static String encodeURIPathComponent(String s) {
     StringBuilder result = new StringBuilder();
     for (int i = 0; i < s.length(); i++) {
@@ -1242,7 +1345,10 @@ public class Char {
     return (result.toString());
   }
 
-  /** Encodes a char to percentage code, if it is not a path character in the sense of XMLs*/
+  /** Encodes a char to percentage code, if it is not a path character in the sense of XMLs
+   * @param s the String
+   * @return the encoded result
+   */
   public static String encodeURIPathComponentXML(String s) {
     StringBuilder result = new StringBuilder();
     for (int i = 0; i < s.length(); i++) {
@@ -1253,12 +1359,18 @@ public class Char {
     return (result.toString());
   }
 
-  /** Decodes a URI path component*/
+  /** Decodes a URI path component
+   * @param s the String
+   * @return the decoded URIPath component
+   */
   public static String decodeURIPathComponent(String s) {
     return (Char.decodePercentage(s));
   }
 
-  /** Encodes a String to UTF8 */
+  /** Encodes a String to UTF8
+   * @param c the String
+   * @return the encoded result
+   */
   public static String encodeUTF8(String c) {
     StringBuilder r = new StringBuilder();
     for (int i = 0; i < c.length(); i++) {
@@ -1267,7 +1379,10 @@ public class Char {
     return (r.toString());
   }
 
-  /** Replaces non-normal characters in a String by Backslash codes */
+  /** Replaces non-normal characters in a String by Backslash codes
+   * @param c the String
+   * @return the encoded result
+   */
   public static String encodeBackslash(String c) {
     StringBuilder r = new StringBuilder();
     for (int i = 0; i < c.length(); i++) {
@@ -1276,7 +1391,10 @@ public class Char {
     return (r.toString());
   }
 
-  /** Replaces non-normal characters in a String by Backslash codes (if not alphanumeric)*/
+  /** Replaces non-normal characters in a String by Backslash codes (if not alphanumeric)
+   * @param c the String
+   * @return the encoded result
+   */
   public static String encodeBackslashToAlphanumeric(String c) {
     StringBuilder r = new StringBuilder();
     for (int i = 0; i < c.length(); i++) {
@@ -1285,7 +1403,10 @@ public class Char {
     return (r.toString());
   }
 
-  /** Replaces non-normal characters in a String by Backslash codes (if not ASCII)*/
+  /** Replaces non-normal characters in a String by Backslash codes (if not ASCII)
+   * @param c the String
+   * @return the encoded result
+   */
   public static String encodeBackslashToASCII(String c) {
     StringBuilder r = new StringBuilder();
     for (int i = 0; i < c.length(); i++) {
@@ -1294,7 +1415,10 @@ public class Char {
     return (r.toString());
   }
 
-  /** Replaces non-normal characters in a String by HTML Ampersand codes */
+  /** Replaces non-normal characters in a String by HTML Ampersand codes
+   * @param c the String
+   * @return the encoded result
+   */
   public static String encodeAmpersand(String c) {
     StringBuilder r = new StringBuilder();
     for (int i = 0; i < c.length(); i++) {
@@ -1303,7 +1427,10 @@ public class Char {
     return (r.toString());
   }
 
-  /** Replaces non-normal characters in a String by HTML Ampersand codes */
+  /** Replaces non-normal characters in a String by HTML Ampersand codes
+   * @param c the String
+   * @return the encoded result
+   */
   public static String encodeAmpersandToAlphanumeric(String c) {
     StringBuilder r = new StringBuilder();
     for (int i = 0; i < c.length(); i++) {
@@ -1314,7 +1441,10 @@ public class Char {
 
   /** Replaces non-normal characters in a String by Percentage codes.
    * If a character is greater than 0x80, the character is converted to
-   * a UTF8-sequence and this sequence is encoded as percentage codes. */
+   * a UTF8-sequence and this sequence is encoded as percentage codes.
+   * @param c the String
+   * @return the result
+   */
   public static String encodePercentage(String c) {
     StringBuilder r = new StringBuilder();
     for (int i = 0; i < c.length(); i++) {
@@ -1323,12 +1453,18 @@ public class Char {
     return (r.toString());
   }
 
-  /** Decodes all codes in a String and normalizes all chars */
+  /** Decodes all codes in a String and normalizes all chars
+   * @param s the String
+   * @return the decoded result
+   */
   public static String decodeAndNormalize(String s) {
     return (normalize(decode(s)));
   }
 
-  /** Normalizes all chars in a String to characters 0x20-0x7F */
+  /** Normalizes all chars in a String to characters 0x20-0x7F
+   * @param s the String
+   * @return the normalized String
+   */
   public static String normalize(String s) {
     StringBuilder b = new StringBuilder();
     for (int i = 0; i < s.length(); i++)
@@ -1336,28 +1472,43 @@ public class Char {
     return (b.toString());
   }
 
-  /** Returns the last character of a String or 0*/
+  /** Returns the last character of a String or 0
+   * @param s the characters
+   * @return the result
+   */
   public static char last(CharSequence s) {
     return (s.length() == 0 ? (char) 0 : s.charAt(s.length() - 1));
   }
 
-  /** Returns the String without the last character */
+  /** Returns the String without the last character
+   * @param s the String
+   * @return the result
+   */
   public static String cutLast(String s) {
     return (s.length() == 0 ? "" : s.substring(0, s.length() - 1));
   }
 
-  /** Cuts the last character */
+  /** Cuts the last character
+   * @param s the StringBuilder
+   * @return the result
+   */
   public static StringBuilder cutLast(StringBuilder s) {
     s.setLength(s.length() - 1);
     return (s);
   }
 
-  /** Returns an HTML-String of the String */
+  /** Returns an HTML-String of the String
+   * @param s the String
+   * @return the result
+   */
   public static String toHTML(String s) {
     return (Char.encodeAmpersand(s).replace("&#10;", "<BR>"));
   }
 
-  /** Returns the chars of a String in hex */
+  /** Returns the chars of a String in hex
+   * @param s the String
+   * @return the result
+   */
   public static String hexAll(String s) {
     StringBuilder result = new StringBuilder();
     for (int i = 0; i < s.length(); i++) {
@@ -1366,7 +1517,10 @@ public class Char {
     return (result.toString());
   }
 
-  /** Replaces special characters in the string by hex codes (cannot be undone)*/
+  /** Replaces special characters in the string by hex codes (cannot be undone)
+   * @param s the String
+   * @return the result
+   */
   public static String encodeHex(String s) {
     StringBuilder result = new StringBuilder();
     for (int i = 0; i < s.length(); i++) {
@@ -1377,19 +1531,29 @@ public class Char {
     return (result.toString());
   }
 
-  /** Upcases the first character in a String*/
+  /** Uppercases the first character in a String
+   * @param s the String
+   * @return the result
+   */
   public static String upCaseFirst(String s) {
     if (s == null || s.length() == 0) return (s);
     return (Character.toUpperCase(s.charAt(0)) + s.substring(1));
   }
 
-  /** Lowcases the first character in a String*/
+  /** Lowercases the first character in a String
+   * @param s the String
+   * @return the result
+   */
   public static String lowCaseFirst(String s) {
     if (s == null || s.length() == 0) return (s);
     return (Character.toLowerCase(s.charAt(0)) + s.substring(1));
   }
 
-  /** Returns a string of the given length, fills with spaces if necessary */
+  /** Returns a string of the given length, fills with spaces if necessary
+   * @param s the characters
+   * @param len the length
+   * @return the result
+   */
   public static CharSequence truncate(CharSequence s, int len) {
     if (s.length() == len) return (s);
     if (s.length() > len) return (s.subSequence(0, len));
@@ -1399,7 +1563,10 @@ public class Char {
     return (result);
   }
 
-  /** Capitalizes words and lowercases the rest*/
+  /** Capitalizes words and lowercases the rest
+   * @param s the String
+   * @return the result
+   */
   public static String capitalize(String s) {
     StringBuilder result = new StringBuilder();
     for (int i = 0; i < s.length(); i++) {
@@ -1411,12 +1578,19 @@ public class Char {
     return (result.toString());
   }
 
-  /** TRUE if the Charsequence ends with the string */
+  /** TRUE if the Charsequence ends with the string
+   * @param s the characters
+   * @param end the end as Sring
+   * @return true if the supplied s ends with the supplied end, false if not
+   */
   public static boolean endsWith(CharSequence s, String end) {
     return (s.length() >= end.length() && s.subSequence(s.length() - end.length(), s.length()).equals(end));
   }
 
-  /** Test routine */
+  /** Test routine
+   * @param argv the arguments
+   * @throws Exception on exceptions
+   */
   public static void main(String argv[]) throws Exception {
     System.out.println("Enter a string with HTML ampersand codes, umlauts and/or UTF-8 codes and hit ENTER.");
     System.out.println("Press CTRL+C to abort");

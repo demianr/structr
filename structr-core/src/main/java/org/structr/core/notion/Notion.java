@@ -46,8 +46,8 @@ import org.structr.core.property.RelationProperty;
  * whole object when referenced from a Group entity.
  *
  * @author Christian Morgner
- * @param <S>
- * @param <T>
+ * @param <S> the type S
+ * @param <T> the type T
  */
 public abstract class Notion<S extends NodeInterface, T> {
 

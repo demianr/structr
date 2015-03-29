@@ -29,7 +29,7 @@ import org.structr.core.property.RelationProperty;
  * object.
  *
  * @author Christian Morgner
- * @param <T>
+ * @param <T> the type T
  */
 public interface DeserializationStrategy<S, T extends NodeInterface> {
 

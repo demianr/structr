@@ -92,13 +92,12 @@ public class Scripting {
 	 * Evaluate the given script according to the parsing conventions: ${} will try to evaluate
 	 * Structr script, ${{}} means Javascript.
 	 *
-	 * @param securityContext the security context
 	 * @param actionContext the action context
 	 * @param entity the entity - may not be null because internal functions will fetch the security context from it
 	 * @param expression the scripting expression
 	 *
-	 * @return
-	 * @throws FrameworkException
+	 * @return the result of the evaluation
+	 * @throws FrameworkException on exceptions
 	 */
 	public static Object evaluate(final ActionContext actionContext, final GraphObject entity, final String expression) throws FrameworkException {
 

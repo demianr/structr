@@ -87,19 +87,19 @@ public class PositionTracker {
 	  
 	  
 	  
-	/** Merges new position changes (given with the inversed old2new mapping) into the existing position change map*/ 
-/*	private void addPositionMappings(SortedMap<Integer,Integer> newPosChanges, 
+	/** Merges new position changes (given with the inversed old2new mapping) into the existing position change map
+/*	private void addPositionMappings(SortedMap&lt;Integer,Integer&gt; newPosChanges, 
 	   		SortedMap<Integer,Integer> old2NewMap) {
 	  
 		
-		TreeMap<Integer,Integer> newMap=new TreeMap<Integer,Integer>();
+		TreeMap&lt;Integer,Integer&gt; newMap=new TreeMap&lt;Integer,Integer&gt;();
 		 
 		//adapt old positions to new mapping
 		while(!positionMap.isEmpty()){
 		  Integer key=positionMap.firstKey();
-	  	  Collection<Integer> modifiers=old2NewMap.headMap(key+1).values();
+	  	  Collection&lt;Integer&gt; modifiers=old2NewMap.headMap(key+1).values();
 	  	  Integer newposition=key;    	
-	  	  for(Iterator<Integer> it=modifiers.iterator(); it.hasNext(); newposition+=it.next()){}
+	  	  for(Iterator&lt;Integer&gt; it=modifiers.iterator(); it.hasNext(); newposition+=it.next()){}
 	  	  Integer value=positionMap.get(key);
 	  	  if(newMap.containsKey(newposition))
 	  		  value+=newMap.get(newposition);
@@ -119,7 +119,12 @@ public class PositionTracker {
 		return;
 	}
 	  */
-	  
+	
+	/**
+	 * Translate a position
+	 * @param pos the position
+	 * @return the result
+	 */
 	public Integer translatePosition(Integer pos) {
 		SortedMap<Integer,Integer> headMap=positionMap.headMap(pos+1);
 		  Integer modifier=0;    	
@@ -145,7 +150,7 @@ public class PositionTracker {
    *  text along the modifications to the corresp. position in the modified text 
    *  after each round (one round=consecutive changes along the text) you need to call closeRun() before submitting more position changes from a new round,
    *  i.e. whenever you passed the string to be modified once call closeRun() before starting to run over the string again with more replacements
-   *  REMARK: NOT TESTED WITH MORE THAN ONE ROUND! may be ERRORNOUS with multiple rounds -> use with care (works with a single round though)
+   *  REMARK: NOT TESTED WITH MORE THAN ONE ROUND! may be ERRORNOUS with multiple rounds -&gt; use with care (works with a single round though)
    * @author smetzger
    *
    */
@@ -213,7 +218,10 @@ public class PositionTracker {
      *  such that translating it usually would make not to much sense
      *  @return true, iff the given position has been cut away, false otherwise (i.e. false if it should be mappable)
      *  TODO: current version ONLY WORKS SECURELY WHEN THERE IS ONLY ONE POSITION CHANGE RUN WITHOUT OVERLAPPING CHANGES!
-     *  as soon as there are more than one change runs, or changes that overlap, we would need to check all following changes instead of only the next one */
+     *  as soon as there are more than one change runs, or changes that overlap, we would need to check all following changes instead of only the next one
+     *  @param pos the position
+     *  @return true if the position has been cut away, false if not
+     */
     public boolean hasBeenCutAway(Integer pos){
         SortedMap<Integer,Integer> tailMap=positionMap.tailMap(pos+1);
         if(tailMap.isEmpty())
@@ -250,7 +258,10 @@ public class PositionTracker {
     /** also handles positions inside text parts that have been cut out properly 
      * 
      *  TODO: current version ONLY WORKS SECURELY WHEN THERE IS ONLY ONE POSITION CHANGE RUN WITHOUT OVERLAPPING CHANGES!
-     *  as soon as there are more than one change runs, or changes that overlap, we would need to check all following changes instead of only the next one */
+     *  as soon as there are more than one change runs, or changes that overlap, we would need to check all following changes instead of only the next one
+     *  @param pos the position
+     *  @return the result
+     */
     public Integer translatePositionExactly(Integer pos) {
 
       SortedMap<Integer,Integer> tailMap=positionMap.tailMap(pos+1);

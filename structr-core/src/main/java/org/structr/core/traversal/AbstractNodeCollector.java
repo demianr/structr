@@ -48,7 +48,7 @@ import org.structr.core.notion.Notion;
  * value parameter of a TraversingConverter.
  *
  * @author Christian Morgner
- * @param <T>
+ * @param <T> the type T
  */
 public abstract class AbstractNodeCollector<T extends AbstractNode> implements TraverserInterface<T>, Value<TraverserInterface<T>> {
 
@@ -160,7 +160,7 @@ public abstract class AbstractNodeCollector<T extends AbstractNode> implements T
 	 * of the predicate may not call getProperty again, because that
 	 * might eventually cause a stack overflow.
 	 *
-	 * @param predicate
+	 * @param predicate the Predicate
 	 */
 	@Override
 	public void addPredicate(Predicate<Node> predicate) {

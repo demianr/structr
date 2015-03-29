@@ -30,6 +30,7 @@ public interface Predicate<T>
 	/**
 	 * Evaluates the given object(s) and returns a boolean value.
 	 *
+	 * @param securityContext the SecurityContext
 	 * @param obj the object to evaluate
 	 * @return true or false
 	 */
