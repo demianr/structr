@@ -285,10 +285,10 @@ public class CsvServlet extends HttpServlet implements HttpServiceServlet {
 	/**
 	 * Write list of objects to output
 	 *
-	 * @param result
-	 * @param out
-	 * @param propertyView
-	 * @throws IOException
+	 * @param result the Result
+	 * @param out the Writer
+	 * @param propertyView the property view
+	 * @throws IOException on I/O problems
 	 */
 	public static void writeCsv(final Result result, final Writer out, final String propertyView) throws IOException {
 

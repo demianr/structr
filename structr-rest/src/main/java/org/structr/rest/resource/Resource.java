@@ -76,7 +76,7 @@ public abstract class Resource {
 	 * @param securityContext the security context of the current request
 	 * @param request the current request
 	 * @return whether this resource accepts the given uri part
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public abstract boolean checkAndConfigure(String part, SecurityContext securityContext, HttpServletRequest request) throws FrameworkException;
 	public abstract String getUriPart();
@@ -173,7 +173,7 @@ public abstract class Resource {
 
 	/**
 	 *
-	 * @param propertyView
+	 * @param propertyView the property view
 	 */
 	public void configurePropertyView(final Value<String> propertyView) {
 	}

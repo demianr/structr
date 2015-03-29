@@ -59,12 +59,12 @@ public class ResourceHelper {
 	/**
 	 * Parse the request path and match with possible resource patterns
 	 *
-	 * @param securityContext
-	 * @param request
-	 * @param resourceMap
-	 * @param propertyView
+	 * @param securityContext the SecurityContext
+	 * @param request the request
+	 * @param resourceMap the Map
+	 * @param propertyView the property view
 	 * @return resourceChain
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public static List<Resource> parsePath(final SecurityContext securityContext, final HttpServletRequest request, final Map<Pattern, Class<? extends Resource>> resourceMap, final Value<String> propertyView) throws FrameworkException {
 
@@ -171,9 +171,9 @@ public class ResourceHelper {
 	/**
 	 * Optimize the resource chain by trying to combine two resources to a new one
 	 *
-	 * @param resourceChain
+	 * @param resourceChain the List of Resources
 	 * @return finalResource
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public static Resource optimizeNestedResourceChain(final List<Resource> resourceChain) throws FrameworkException {
 
@@ -255,12 +255,12 @@ public class ResourceHelper {
 	/**
 	 * Apply view transformation on final resource, if any
 	 *
-	 * @param request
-	 * @param securityContext
-	 * @param finalResource
-	 * @param propertyView
+	 * @param request the request
+	 * @param securityContext the SecurityContext
+	 * @param finalResource the Resource
+	 * @param propertyView the property view
 	 * @return transformedResource
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public static Resource applyViewTransformation(final HttpServletRequest request, final SecurityContext securityContext, final Resource finalResource, final Value<String> propertyView) throws FrameworkException {
 
