@@ -180,7 +180,7 @@ public class Page extends DOMNode implements Linkable, Document, DOMImplementati
 	 * "ownerDocument" if not set
 	 *
 	 * @return the new ownerDocument
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public static Page createNewPage(SecurityContext securityContext, String name) throws FrameworkException {
 
@@ -565,9 +565,9 @@ public class Page extends DOMNode implements Linkable, Document, DOMImplementati
 	/**
 	 * Return the content of this page depending on edit mode
 	 *
-	 * @param editMode
+	 * @param editMode the EditMode
 	 * @return content
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public String getContent(final RenderContext.EditMode editMode) throws FrameworkException {
 

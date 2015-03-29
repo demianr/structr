@@ -101,10 +101,10 @@ public abstract class AbstractCommand {
 	}
 
 	/**
-	 * Returns the node to which the uuid parameter
+	 * Returns the node to which the UUID parameter
 	 * of this command refers to.
 	 *
-	 * @param id
+	 * @param id the UUID
 	 * @return the node
 	 */
 	public AbstractNode getNode(final String id) {
@@ -128,10 +128,10 @@ public abstract class AbstractCommand {
 	}
 
 	/**
-	 * Returns the relationship to which the uuid parameter
+	 * Returns the relationship to which the UUID parameter
 	 * of this command refers to.
 	 *
-	 * @param id
+	 * @param id the UUID
 	 * @return the node
 	 */
 	public AbstractRelationship getRelationship(final String id) {
@@ -171,8 +171,8 @@ public abstract class AbstractCommand {
 	/**
 	 * Make child nodes of the source nodes child nodes of the target node.
 	 *
-	 * @param sourceNode
-	 * @param targetNode
+	 * @param sourceNode the source
+	 * @param targetNode the target
 	 */
 	protected void moveChildNodes(final DOMNode sourceNode, final DOMNode targetNode) {
 
@@ -197,7 +197,7 @@ public abstract class AbstractCommand {
 	 * It is necessary to comply with DOM standards.
 	 *
 	 * @return shadow document
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	protected ShadowDocument getOrCreateHiddenDocument() throws FrameworkException {
 

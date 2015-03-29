@@ -40,12 +40,12 @@ public class Html extends DOMElement {
 
 	public static final Property<String> _manifest = new HtmlProperty("manifest");
 
-	/** If set, the custom opening tag is rendered instead of just <html> to allow things like IE conditional comments:
+	/** If set, the custom opening tag is rendered instead of just &lt;html&gt; to allow things like IE conditional comments:
 	 *
-	 * <!--[if lt IE 7]>      <html class="no-js ie8 ie7 ie6"> <![endif]-->
-	 * <!--[if IE 7]>         <html class="no-js ie8 ie7"> <![endif]-->
-	 * <!--[if IE 8]>         <html class="no-js ie8"> <![endif]-->
-	 * <!--[if gt IE 8]><!--> <html class="no-js ie9"> <!--<![endif]-->
+	 * &lt;!--[if lt IE 7]&gt;      &lt;html class="no-js ie8 ie7 ie6"&gt; &lt;![endif]--&gt;
+	 * &lt;!--[if IE 7]&gt;         &lt;html class="no-js ie8 ie7"&gt; &lt;![endif]--&gt;
+	 * &lt;!--[if IE 8]&gt;         &lt;html class="no-js ie8"&gt; &lt;![endif]--&gt;
+	 * &lt;!--[if gt IE 8]&gt;&lt;!--&gt; &lt;html class="no-js ie9"&gt; &lt;!--&lt;![endif]--&gt;
 	 *
 	*/
 	public static final Property<String> _customOpeningTag = new StringProperty("customOpeningTag");

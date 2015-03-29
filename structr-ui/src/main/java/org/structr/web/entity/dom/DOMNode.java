@@ -680,7 +680,7 @@ public abstract class DOMNode extends LinkedTreeNode<DOMChildren, DOMSiblings, D
 	 * child. Override this method if you need to set properties on the
 	 * child depending on its type etc.
 	 *
-	 * @param newChild
+	 * @param newChild the Node
 	 */
 	protected void handleNewChild(Node newChild) {
 
@@ -760,9 +760,9 @@ public abstract class DOMNode extends LinkedTreeNode<DOMChildren, DOMSiblings, D
 	/**
 	 * Render the node including data binding (outer rendering).
 	 *
-	 * @param renderContext
-	 * @param depth
-	 * @throws FrameworkException
+	 * @param renderContext the RenderContext
+	 * @param depth the depth
+	 * @throws FrameworkException on exceptions
 	 */
 	@Override
 	public void render(final RenderContext renderContext, final int depth) throws FrameworkException {
@@ -1080,7 +1080,7 @@ public abstract class DOMNode extends LinkedTreeNode<DOMChildren, DOMSiblings, D
 	 * A {@link Page} is a {@link DOMNode} as well, so we have to check
 	 * 'this' as well.
 	 *
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	protected void increasePageVersion() throws FrameworkException {
 
@@ -1242,7 +1242,7 @@ public abstract class DOMNode extends LinkedTreeNode<DOMChildren, DOMSiblings, D
 	 * Decide whether this node should be displayed for the given conditions
 	 * string.
 	 *
-	 * @param renderContext
+	 * @param renderContext the RenderContext
 	 * @return true if node should be displayed
 	 */
 	protected boolean displayForConditions(final RenderContext renderContext) {
@@ -1287,7 +1287,7 @@ public abstract class DOMNode extends LinkedTreeNode<DOMChildren, DOMSiblings, D
 	 * Decide whether this node should be displayed for the given locale
 	 * settings.
 	 *
-	 * @param renderContext
+	 * @param renderContext the RenderContext
 	 * @return true if node should be displayed
 	 */
 	protected boolean displayForLocale(final RenderContext renderContext) {
@@ -1936,9 +1936,9 @@ public abstract class DOMNode extends LinkedTreeNode<DOMChildren, DOMSiblings, D
 	 * Recursively clone given node, all its direct children and connect the cloned
 	 * child nodes to the clone parent node.
 	 *
-	 * @param securityContext
-	 * @param nodeToClone
-	 * @return
+	 * @param securityContext the SecurityContext
+	 * @param nodeToClone the Node to clone
+	 * @return the cloned DOMNode
 	 */
 	public static DOMNode cloneAndAppendChildren(final SecurityContext securityContext, final DOMNode nodeToClone) {
 

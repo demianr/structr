@@ -102,10 +102,10 @@ public class UiAuthenticator implements Authenticator {
 	 * First, check session id, then try external (OAuth) authentication,
 	 * finally, check standard login by credentials.
 	 *
-	 * @param request
-	 * @param response
+	 * @param request the request
+	 * @param response the response
 	 * @return security context
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	@Override
 	public SecurityContext initializeAndExamineRequest(final HttpServletRequest request, final HttpServletResponse response) throws FrameworkException {
@@ -373,8 +373,8 @@ public class UiAuthenticator implements Authenticator {
 	/**
 	 * This method checks all configured external authentication services.
 	 *
-	 * @param request
-	 * @param response
+	 * @param request the request
+	 * @param response the response
 	 * @return user
 	 */
 	protected static Principal checkExternalAuthentication(final HttpServletRequest request, final HttpServletResponse response) {

@@ -106,11 +106,11 @@ public class ListUnattachedNodesCommand extends AbstractCommand {
 	 * Return list of nodes which are not attached to a page and have no
 	 * parent element (no incoming CONTAINS rel)
 	 *
-	 * @param app
-	 * @param securityContext
-	 * @param webSocketData
-	 * @return
-	 * @throws FrameworkException
+	 * @param app the App
+	 * @param securityContext the SecurityContext
+	 * @param webSocketData the WebSocketMessage
+	 * @return the unattached nodes
+	 * @throws FrameworkException on exceptions
 	 */
 	protected static List<AbstractNode> getUnattachedNodes(final App app, final SecurityContext securityContext, final WebSocketMessage webSocketData) throws FrameworkException {
 

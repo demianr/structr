@@ -107,8 +107,8 @@ public class PushTransmission implements CloudTransmission {
 	 * @param client the client to send over
 	 * @param file the file to split and send
 	 * @param chunkSize the chunk size for a single chunk
-	 * @throws org.structr.common.error.FrameworkException
-	 * @throws java.io.IOException
+	 * @throws org.structr.common.error.FrameworkException on exceptions
+	 * @throws java.io.IOException on I/O problems
 	 */
 	public static void sendFile(final CloudConnection client, final File file, final int chunkSize) throws FrameworkException, IOException {
 

@@ -178,7 +178,7 @@ public class RenderContext extends ActionContext {
 	 * If no user is logged in, the edit mode is always NONE to disable
 	 * editing for public sessions.
 	 *
-	 * @param user
+	 * @param user the Principal
 	 * @return edit mode
 	 */
 	public EditMode getEditMode(final Principal user) {

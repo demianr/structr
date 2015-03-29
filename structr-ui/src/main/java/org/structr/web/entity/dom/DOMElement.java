@@ -320,9 +320,9 @@ public class DOMElement extends DOMNode implements Element, NamedNodeMap {
 	/**
 	 * Render (inner) content.
 	 *
-	 * @param renderContext
-	 * @param depth
-	 * @throws FrameworkException
+	 * @param renderContext the RenderContext
+	 * @param depth the depth
+	 * @throws FrameworkException on exceptions
 	 */
 	@Override
 	public void renderContent(final RenderContext renderContext, final int depth) throws FrameworkException {
@@ -865,8 +865,8 @@ public class DOMElement extends DOMNode implements Element, NamedNodeMap {
 	/**
 	 * Render all the data-* attributes
 	 *
-	 * @param securityContext
-	 * @param renderContext
+	 * @param securityContext the SecurityContext
+	 * @param renderContext the RenderContext
 	 */
 	private void renderCustomAttributes(final AsyncBuffer out, final SecurityContext securityContext, final RenderContext renderContext) throws FrameworkException {
 
@@ -947,7 +947,11 @@ public class DOMElement extends DOMNode implements Element, NamedNodeMap {
 	 *
 	 * Make sure it happens only once per page.
 	 *
-	 * @param out
+	 * @param out the AsyncBuffer
+	 * @param securityContext the SecurityContext
+	 * @param renderContext the RenderContext
+	 * @param depth the depth
+	 * @throws FrameworkException on exceptions
 	 */
 	private void renderStructrAppLib(final AsyncBuffer out, final SecurityContext securityContext, final RenderContext renderContext, final int depth) throws FrameworkException {
 
@@ -979,8 +983,8 @@ public class DOMElement extends DOMNode implements Element, NamedNodeMap {
 	 * This method concatenates the pre-defined HTML attributes and the
 	 * optional custom data-* attributes.
 	 *
-	 * @param propertyView
-	 * @return property key
+	 * @param propertyView the property view
+	 * @return Iterable of PropertyKey
 	 */
 	@Override
 	public Iterable<PropertyKey> getPropertyKeys(String propertyView) {

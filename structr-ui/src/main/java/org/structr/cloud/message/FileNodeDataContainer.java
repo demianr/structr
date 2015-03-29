@@ -143,6 +143,7 @@ public class FileNodeDataContainer extends NodeDataContainer {
 	 *
 	 * @param finalPath the final path of this file
 	 * @return whether the renaming/moving was successful
+	 * @throws IOException on I/O problems
 	 */
 	public boolean persistTemporaryFile(String finalPath) throws IOException {
 
@@ -190,7 +191,7 @@ public class FileNodeDataContainer extends NodeDataContainer {
 
 	// ----- public static methods -----
 	/**
-	 * Creates and returns an Iterable instance whose iterator creates <code<FileNodeChunk</code> instances of the given file.
+	 * Creates and returns an Iterable instance whose iterator creates <code>FileNodeChunk</code> instances of the given file.
 	 *
 	 * @param fileNode the node to read from
 	 * @param chunkSize the desired chunk size

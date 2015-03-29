@@ -294,9 +294,9 @@ public class RegistrationResource extends Resource {
 	 * If a {@link Person} is found, convert that object to a {@link User} object.
 	 * Do not auto-create a new user.
 	 *
-	 * @param securityContext
-	 * @param credentialKey
-	 * @param credentialValue
+	 * @param securityContext the SecurityContext
+	 * @param credentialKey the credential key
+	 * @param credentialValue the credential value
 	 * @return user
 	 */
 	public static Principal createUser(final SecurityContext securityContext, final PropertyKey credentialKey, final String credentialValue) {
@@ -311,10 +311,10 @@ public class RegistrationResource extends Resource {
 	 * If a {@link Person} is found, convert that object to a {@link User} object.
 	 * Do not auto-create a new user.
 	 *
-	 * @param securityContext
-	 * @param credentialKey
-	 * @param credentialValue
-	 * @param propertySet
+	 * @param securityContext the SecurityContext
+	 * @param credentialKey the credential key
+	 * @param credentialValue the credential value
+	 * @param propertySet the Map
 	 * @return user
 	 */
 	public static Principal createUser(final SecurityContext securityContext, final PropertyKey credentialKey, final String credentialValue, final Map<String, Object> propertySet) {
@@ -329,10 +329,10 @@ public class RegistrationResource extends Resource {
 	 * If a {@link Person} is found, convert that object to a {@link User} object.
 	 * Do not auto-create a new user.
 	 *
-	 * @param securityContext
-	 * @param credentialKey
-	 * @param credentialValue
-	 * @param autoCreate
+	 * @param securityContext the SecurityContext
+	 * @param credentialKey credential key
+	 * @param credentialValue credential value
+	 * @param autoCreate whether the user should be automatically created or not
 	 * @return user
 	 */
 	public static Principal createUser(final SecurityContext securityContext, final PropertyKey credentialKey, final String credentialValue, final boolean autoCreate) {
@@ -347,11 +347,11 @@ public class RegistrationResource extends Resource {
 	 * If a {@link Person} is found, convert that object to a {@link User} object.
 	 * Do not auto-create a new user.
 	 *
-	 * @param securityContext
-	 * @param credentialKey
-	 * @param credentialValue
-	 * @param autoCreate
-	 * @param userClass
+	 * @param securityContext the SecurityContext
+	 * @param credentialKey the credential key
+	 * @param credentialValue the credential value
+	 * @param autoCreate whether the user should be automatically created or not
+	 * @param userClass the Class to use
 	 * @return user
 	 */
 	public static Principal createUser(final SecurityContext securityContext, final PropertyKey credentialKey, final String credentialValue, final boolean autoCreate, final Class userClass) {
@@ -366,11 +366,11 @@ public class RegistrationResource extends Resource {
 	 * If a {@link Person} is found, convert that object to a {@link User} object.
 	 * If autoCreate is true, auto-create a new user, even if no matching person is found.
 	 *
-	 * @param securityContext
-	 * @param credentialKey
-	 * @param credentialValue
-	 * @param propertySet
-	 * @param autoCreate
+	 * @param securityContext the SecurityContext
+	 * @param credentialKey the credential key
+	 * @param credentialValue the credential value
+	 * @param propertySet the Map
+	 * @param autoCreate whether the user should be automatically created or not
 	 * @return user
 	 */
 	public static Principal createUser(final SecurityContext securityContext, final PropertyKey credentialKey, final String credentialValue, final Map<String, Object> propertySet, final boolean autoCreate) {
@@ -385,12 +385,12 @@ public class RegistrationResource extends Resource {
 	 * If a {@link Principal} is found, convert that object to a {@link Principal} object.
 	 * If autoCreate is true, auto-create a new user, even if no matching person is found.
 	 *
-	 * @param securityContext
-	 * @param credentialKey
-	 * @param credentialValue
-	 * @param propertySet
-	 * @param autoCreate
-	 * @param userClass
+	 * @param securityContext the SecurityContext
+	 * @param credentialKey the credential key
+	 * @param credentialValue the credential value
+	 * @param propertySet the Map
+	 * @param autoCreate whether the user should be automatically created or not
+	 * @param userClass the Class to use
 	 * @return user
 	 */
 	public static Principal createUser(final SecurityContext securityContext, final PropertyKey credentialKey, final String credentialValue, final Map<String, Object> propertySet, final boolean autoCreate, final Class userClass) {

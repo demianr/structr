@@ -32,7 +32,7 @@ import org.w3c.dom.DOMException;
 /**
  * Create a shared component as a clone of the source node.
  *
- * This command will create a SYNC relationship: (source)<-[:SYNC]-(component)
+ * This command will create a SYNC relationship: (source)&lt;-[:SYNC]-(component)
  *
  * @author Axel Morgner
  */

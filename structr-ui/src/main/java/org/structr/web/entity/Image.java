@@ -139,8 +139,8 @@ public class Image extends File {
 	 *
 	 * If no scaled image of the requested size exists or the image is newer than the scaled image, create a new one
 	 *
-	 * @param maxWidthString
-	 * @param maxHeightString
+	 * @param maxWidthString the maximum width
+	 * @param maxHeightString the maximum height
 	 *
 	 * @return scaled image
 	 */
@@ -169,8 +169,8 @@ public class Image extends File {
 	 *
 	 * Default behaviour is to make the scaled image complete fit inside a rectangle of maxWidth x maxHeight.
 	 *
-	 * @param maxWidth
-	 * @param maxHeight
+	 * @param maxWidth the maximum width
+	 * @param maxHeight the maximum height
 	 * @param cropToFit if true, scale down until the shorter edge fits inside the rectangle, and then crop
 	 *
 	 * @return scaled image

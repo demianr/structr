@@ -103,7 +103,7 @@ public class StructrOAuthClient {
 	 * 
 	 * Use with {@literal response.setRedirect(request.getLocationUri());}
 	 * 
-	 * @param request
+	 * @param request the request
 	 * @return request URI
 	 */
 	public String getEndUserAuthorizationRequestUri(final HttpServletRequest request) {
@@ -136,7 +136,7 @@ public class StructrOAuthClient {
 	/**
 	 * Build an OAuth2 server from the configured values for the given name.
 	 * 
-	 * @param name
+	 * @param name the name
 	 * @return server
 	 */
 	public static StructrOAuthClient getServer(final String name) {

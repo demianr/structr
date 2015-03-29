@@ -55,15 +55,15 @@ public abstract class ImageHelper extends FileHelper {
 	/**
 	 * Create a new image node from the given image data
 	 *
-	 * @param securityContext
-	 * @param imageStream
-	 * @param contentType
+	 * @param securityContext the SecurityContext
+	 * @param imageStream the InputStream
+	 * @param contentType the content type
 	 * @param imageType defaults to Image.class if null
-	 * @param name
-	 * @param markAsThumbnail
+	 * @param name the name
+	 * @param markAsThumbnail whether to mark the node as thumbnail or not
 	 * @return image
-	 * @throws FrameworkException
-	 * @throws IOException
+	 * @throws FrameworkException on exceptions
+	 * @throws IOException on I/O problems
 	 */
 	public static Image createImage(final SecurityContext securityContext, final InputStream imageStream, final String contentType, final Class<? extends Image> imageType, final String name, final boolean markAsThumbnail)
 		throws FrameworkException, IOException {
@@ -75,15 +75,15 @@ public abstract class ImageHelper extends FileHelper {
 	/**
 	 * Create a new image node from the given image data
 	 *
-	 * @param securityContext
-	 * @param imageData
-	 * @param contentType
+	 * @param securityContext the SecurityContext
+	 * @param imageData the data
+	 * @param contentType the content type
 	 * @param imageType defaults to Image.class if null
-	 * @param name
-	 * @param markAsThumbnail
+	 * @param name the name
+	 * @param markAsThumbnail whether to mark the Node as thumbnail or not
 	 * @return image
-	 * @throws FrameworkException
-	 * @throws IOException
+	 * @throws FrameworkException on exceptions
+	 * @throws IOException on I/O problems
 	 */
 	public static Image createImage(final SecurityContext securityContext, final byte[] imageData, final String contentType, final Class<? extends Image> imageType, final String name, final boolean markAsThumbnail)
 		throws FrameworkException, IOException {
@@ -109,11 +109,11 @@ public abstract class ImageHelper extends FileHelper {
 	/**
 	 * Write image data to the given image node and set checksum and size.
 	 *
-	 * @param img
-	 * @param imageData
-	 * @param contentType
-	 * @throws FrameworkException
-	 * @throws IOException
+	 * @param img the Image
+	 * @param imageData the data
+	 * @param contentType the content
+	 * @throws FrameworkException on exceptions
+	 * @throws IOException on I/O problems
 	 */
 	public static void setImageData(final Image img, final byte[] imageData, final String contentType)
 		throws FrameworkException, IOException {
@@ -273,7 +273,7 @@ public abstract class ImageHelper extends FileHelper {
 	 * This method detects and removes the bytes, so that the image
 	 * can be read again.
 	 *
-	 * @param original
+	 * @param original the data
 	 * @return normalized image
 	 */
 	public static byte[] normalizeJpegImage(final byte[] original) {
@@ -351,7 +351,7 @@ public abstract class ImageHelper extends FileHelper {
 	 * TODO: Improve method to check file type by peeping at the
 	 * content
 	 *
-	 * @param urlString
+	 * @param urlString the URL
 	 * @return true if is of image type
 	 */
 	public static boolean isImageType(final String urlString) {
@@ -386,7 +386,7 @@ public abstract class ImageHelper extends FileHelper {
 	 * TODO: Improve method to check file type by peeping at the
 	 * content
 	 *
-	 * @param urlString
+	 * @param urlString the URL
 	 * @return true if is swf file
 	 */
 	public static boolean isSwfType(final String urlString) {

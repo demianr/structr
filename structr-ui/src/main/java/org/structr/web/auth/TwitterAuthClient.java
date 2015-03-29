@@ -68,7 +68,7 @@ public class TwitterAuthClient extends StructrOAuthClient {
 	 * 
 	 * Use with {@literal response.setRedirect(request.getLocationUri());}
 	 * 
-	 * @param request
+	 * @param request the request
 	 * @return auth request URI
 	 */
 	@Override

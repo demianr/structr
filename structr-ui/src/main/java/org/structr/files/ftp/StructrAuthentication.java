@@ -33,8 +33,8 @@ public class StructrAuthentication implements Authentication {
     /**
      * Constructor with the minimal data for an authentication
      * 
-     * @param username
-     * @param password
+     * @param username the username
+     * @param password the password
      */
     public StructrAuthentication(final String username, final String password) {
         this.username = username;

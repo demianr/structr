@@ -46,7 +46,7 @@ public interface CloudListener {
 	 * Can be called by the Ping message to signal
 	 * progress to the sender / receiver.
 	 *
-	 * @param message
+	 * @param message the message
 	 */
 	public void transmissionProgress(String message);
 }

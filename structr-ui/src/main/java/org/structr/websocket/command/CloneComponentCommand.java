@@ -32,7 +32,7 @@ import org.w3c.dom.DOMException;
 /**
  * Create a node as clone of a component.
  *
- * This command will create a SYNC relationship: (component)-[:SYNC]->(target)
+ * This command will create a SYNC relationship: (component)-[:SYNC]-&gt;(target)
  *
  * @author Axel Morgner
  */

@@ -66,13 +66,13 @@ public class FileHelper {
 	/**
 	 * Transform an existing file into the target class.
 	 *
-	 * @param <T>
-	 * @param securityContext
-	 * @param uuid
-	 * @param fileType
+	 * @param <T> the type T
+	 * @param securityContext the SecurityContext
+	 * @param uuid the UUID
+	 * @param fileType the file type as Class
 	 * @return transformed file
-	 * @throws FrameworkException
-	 * @throws IOException
+	 * @throws FrameworkException on exceptions
+	 * @throws IOException on I/O problems
 	 */
 	public static <T extends org.structr.dynamic.File> T transformFile(final SecurityContext securityContext, final String uuid, final Class<T> fileType) throws FrameworkException, IOException {
 
@@ -97,13 +97,13 @@ public class FileHelper {
 	 * If the given string is an uuid of an existing file, transform it into
 	 * the target class.
 	 *
-	 * @param <T>
-	 * @param securityContext
-	 * @param rawData
+	 * @param <T> the type T
+	 * @param securityContext the SecurityContext
+	 * @param rawData the data
 	 * @param t defaults to File.class if null
 	 * @return file
-	 * @throws FrameworkException
-	 * @throws IOException
+	 * @throws FrameworkException on exceptions
+	 * @throws IOException on I/O problems
 	 */
 	public static <T extends org.structr.dynamic.File> T createFileBase64(final SecurityContext securityContext, final String rawData, final Class<T> t) throws FrameworkException, IOException {
 
@@ -116,15 +116,15 @@ public class FileHelper {
 	/**
 	 * Create a new file node from the given input stream
 	 *
-	 * @param <T>
-	 * @param securityContext
-	 * @param fileStream
-	 * @param contentType
+	 * @param <T> the type T
+	 * @param securityContext the SecurityContext
+	 * @param fileStream the InputStream
+	 * @param contentType the content type
 	 * @param fileType defaults to File.class if null
-	 * @param name
+	 * @param name the name
 	 * @return file
-	 * @throws FrameworkException
-	 * @throws IOException
+	 * @throws FrameworkException on exceptions
+	 * @throws IOException on I/O problems
 	 */
 	public static <T extends org.structr.dynamic.File> T createFile(final SecurityContext securityContext, final InputStream fileStream, final String contentType, final Class<T> fileType, final String name)
 		throws FrameworkException, IOException {
@@ -137,15 +137,15 @@ public class FileHelper {
 	/**
 	 * Create a new file node from the given byte array
 	 *
-	 * @param <T>
-	 * @param securityContext
-	 * @param fileData
+	 * @param <T> the type T
+	 * @param securityContext the SecurityContext
+	 * @param fileData the data
 	 * @param contentType if null, try to auto-detect content type
-	 * @param t
-	 * @param name
+	 * @param t the Class
+	 * @param name the name
 	 * @return file
-	 * @throws FrameworkException
-	 * @throws IOException
+	 * @throws FrameworkException on exceptions
+	 * @throws IOException on I/O problems
 	 */
 	public static <T extends org.structr.dynamic.File> T createFile(final SecurityContext securityContext, final byte[] fileData, final String contentType, final Class<T> t, final String name)
 		throws FrameworkException, IOException {
@@ -164,14 +164,14 @@ public class FileHelper {
 	/**
 	 * Create a new file node from the given byte array
 	 *
-	 * @param <T>
-	 * @param securityContext
-	 * @param fileData
-	 * @param contentType
+	 * @param <T> the type T
+	 * @param securityContext the SecurityContext
+	 * @param fileData the data
+	 * @param contentType the content type
 	 * @param t defaults to File.class if null
 	 * @return file
-	 * @throws FrameworkException
-	 * @throws IOException
+	 * @throws FrameworkException on exceptions
+	 * @throws IOException on I/O problems
 	 */
 	public static <T extends org.structr.dynamic.File> T createFile(final SecurityContext securityContext, final byte[] fileData, final String contentType, final Class<T> t)
 		throws FrameworkException, IOException {
@@ -184,10 +184,10 @@ public class FileHelper {
 	 * Decodes base64-encoded raw data into binary data and writes it to the
 	 * given file.
 	 *
-	 * @param file
-	 * @param rawData
-	 * @throws FrameworkException
-	 * @throws IOException
+	 * @param file the File
+	 * @param rawData the data
+	 * @throws FrameworkException on exceptions
+	 * @throws IOException on I/O problems
 	 */
 	public static void decodeAndSetFileData(final org.structr.dynamic.File file, final String rawData) throws FrameworkException, IOException {
 
@@ -199,11 +199,11 @@ public class FileHelper {
 	/**
 	 * Write image data to the given file node and set checksum and size.
 	 *
-	 * @param file
-	 * @param fileData
+	 * @param file the File
+	 * @param fileData on data
 	 * @param contentType if null, try to auto-detect content type
-	 * @throws FrameworkException
-	 * @throws IOException
+	 * @throws FrameworkException on exceptions
+	 * @throws IOException on I/O problems
 	 */
 	public static void setFileData(final org.structr.dynamic.File file, final byte[] fileData, final String contentType)
 		throws FrameworkException, IOException {
@@ -223,8 +223,8 @@ public class FileHelper {
 	 * Update checksum content type and size of the given file
 	 *
 	 * @param file the file
-	 * @throws FrameworkException
-	 * @throws IOException
+	 * @throws FrameworkException on exceptions
+	 * @throws IOException on I/O problems
 	 */
 	public static void updateMetadata(final org.structr.dynamic.File file) throws FrameworkException, IOException {
 
@@ -299,10 +299,10 @@ public class FileHelper {
 	 * Write binary data to a file and reference the file on disk at the
 	 * given file node
 	 *
-	 * @param fileNode
-	 * @param inStream
-	 * @throws FrameworkException
-	 * @throws IOException
+	 * @param fileNode the File
+	 * @param inStream the InputStream
+	 * @throws FrameworkException on exceptions
+	 * @throws IOException on I/O problems
 	 */
 	public static void writeToFile(final org.structr.dynamic.File fileNode, final InputStream inStream) throws FrameworkException, IOException {
 
@@ -314,10 +314,10 @@ public class FileHelper {
 	 * Write binary data to a file and reference the file on disk at the
 	 * given file node
 	 *
-	 * @param fileNode
-	 * @param data
-	 * @throws FrameworkException
-	 * @throws IOException
+	 * @param fileNode the File
+	 * @param data the data
+	 * @throws FrameworkException on exceptions
+	 * @throws IOException on I/O problems
 	 * @return the file on disk
 	 */
 	public static File writeToFile(final org.structr.dynamic.File fileNode, final byte[] data) throws FrameworkException, IOException {
@@ -350,9 +350,9 @@ public class FileHelper {
 	/**
 	 * Return mime type of given file
 	 *
-	 * @param file
+	 * @param file the FileBase
 	 * @return content type
-	 * @throws java.io.IOException
+	 * @throws java.io.IOException on I/O problems
 	 */
 	public static String getContentMimeType(final org.structr.web.entity.FileBase file) throws IOException {
 		return getContentMimeType(file.getFileOnDisk(), file.getProperty(AbstractNode.name));
@@ -361,10 +361,10 @@ public class FileHelper {
 	/**
 	 * Return mime type of given file
 	 *
-	 * @param file
-	 * @param name
+	 * @param file the File
+	 * @param name the name
 	 * @return content type
-	 * @throws java.io.IOException
+	 * @throws java.io.IOException on I/O problems
 	 */
 	public static String getContentMimeType(final java.io.File file, final String name) throws IOException {
 
@@ -405,7 +405,7 @@ public class FileHelper {
 	/**
 	 * Calculate CRC32 checksum of given file
 	 *
-	 * @param file
+	 * @param file the FileBase
 	 * @return checksum
 	 */
 	public static Long getChecksum(final FileBase file) {
@@ -440,7 +440,7 @@ public class FileHelper {
 	/**
 	 * Return size of file on disk, or -1 if not possible
 	 *
-	 * @param file
+	 * @param file the FileBase
 	 * @return size
 	 */
 	public static long getSize(final FileBase file) {
@@ -477,8 +477,8 @@ public class FileHelper {
 	 *
 	 * File may not be hidden or deleted.
 	 *
-	 * @param securityContext
-	 * @param absolutePath
+	 * @param securityContext the SecurityContext
+	 * @param absolutePath the absolute path
 	 * @return file
 	 */
 	public static AbstractFile getFileByAbsolutePath(final SecurityContext securityContext, final String absolutePath) {
@@ -559,8 +559,8 @@ public class FileHelper {
 	/**
 	 * Find the first file with given name on root level (without parent folder).
 	 *
-	 * @param securityContext
-	 * @param name
+	 * @param securityContext the SecurityContext
+	 * @param name the name
 	 * @return file
 	 */
 	public static AbstractFile getFirstRootFileByName(final SecurityContext securityContext, final String name) {
@@ -591,7 +591,7 @@ public class FileHelper {
 	 * {@link File} or
 	 * {@link org.structr.web.entity.Folder}
 	 *
-	 * @param file
+	 * @param file the AbstractFile
 	 * @return path
 	 */
 	public static String getFolderPath(final AbstractFile file) {
@@ -632,13 +632,13 @@ public class FileHelper {
 	/**
 	 * Create one folder per path item and return the last folder.
 	 *
-	 * F.e.: /a/b/c => Folder["name":"a"] --HAS_CHILD--> Folder["name":"b"]
-	 * --HAS_CHILD--> Folder["name":"c"], returns Folder["name":"c"]
+	 * F.e.: /a/b/c =&gt; Folder["name":"a"] --HAS_CHILD--&gt; Folder["name":"b"]
+	 * --HAS_CHILD--&gt; Folder["name":"c"], returns Folder["name":"c"]
 	 *
-	 * @param securityContext
-	 * @param path
+	 * @param securityContext the SecurityContext
+	 * @param path the path
 	 * @return folder
-	 * @throws FrameworkException
+	 * @throws FrameworkException on exceptions
 	 */
 	public static Folder createFolderPath(final SecurityContext securityContext, final String path) throws FrameworkException {
 
