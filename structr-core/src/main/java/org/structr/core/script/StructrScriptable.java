@@ -128,6 +128,12 @@ public class StructrScriptable extends ScriptableObject {
 			}, null, 0, 0);
 		}
 
+		if ("this".equals(name)) {
+
+			return wrap(start, null, entity);
+
+		}
+
 		if ("vars".equals(name)) {
 
 			NativeObject nobj = new NativeObject();
@@ -480,7 +486,7 @@ public class StructrScriptable extends ScriptableObject {
 					obj.setProperty(key, value);
 
 				} catch (FrameworkException fex) {
-					fex.printStackTrace();
+					exception = fex;
 				}
 			}
 		}
@@ -499,7 +505,7 @@ public class StructrScriptable extends ScriptableObject {
 					obj.setProperty(key, null);
 
 				} catch (FrameworkException fex) {
-					fex.printStackTrace();
+					exception = fex;
 				}
 			}
 		}
