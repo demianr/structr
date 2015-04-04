@@ -1217,46 +1217,91 @@ public class ActionContextTest extends StructrTest {
 	}
 
 	public void testFunctionRollbackOnError () {
+
+		final ActionContext ctx = new ActionContext(securityContext, null);
+
+		/**
+		 * first the old scripting style
+		 */
+		TestOne testNodeOldScripting = null;
+
+		try (final Tx tx = app.tx()) {
+
+			testNodeOldScripting = createTestNode(TestOne.class);
+			testNodeOldScripting.setProperty(TestOne.aString, "InitialString");
+			testNodeOldScripting.setProperty(TestOne.anInt, 42);
+
+			tx.success();
+
+		} catch (FrameworkException ex) {
+
+			ex.printStackTrace();
+			fail("Unexpected exception");
+
+		}
+
+		try (final Tx tx = app.tx()) {
+
+			Scripting.replaceVariables(ctx, testNodeOldScripting, "${ ( set(this, 'aString', 'NewString'), set(this, 'anInt', 'NOT_AN_INTEGER') ) }");
+			fail("StructrScript: setting anInt to 'NOT_AN_INTEGER' should cause an Exception");
+
+			tx.success();
+
+		} catch (FrameworkException expected) { }
+
+
 		try {
 
 			try (final Tx tx = app.tx()) {
 
-				final ActionContext ctx = new ActionContext(securityContext, null);
+				assertEquals("StructrScript: String should still have initial value!", "InitialString", Scripting.replaceVariables(ctx, testNodeOldScripting, "${(get(this, 'aString'))}"));
 
-				// test setup
-				TestOne t1 = createTestNode(TestOne.class);
-				t1.setProperty(TestOne.aString, "InitialString");
-				t1.setProperty(TestOne.anInt, 42);
+				tx.success();
+			}
+
+		} catch (FrameworkException ex) {
+
+			ex.printStackTrace();
+			fail("Unexpected exception");
+
+		}
 
 
-				/**
-				 * first the old scripting style
-				 */
-				try {
-					Scripting.replaceVariables(ctx, t1, "${ ( set(this, 'aString', 'NewString'), set(this, 'anInt', 'error') ) }");
-					fail("StructrScript: setting anInt to 'error' should cause an Exception");
-				} catch (FrameworkException fx) { }
+		/**
+		 * then the JS-style scripting
+		 */
+		TestOne testNodeJavaScript = null;
 
-				/**
-				 * Test currently fails - I don't understand why "aString" equals "NewString" even though an exception was thrown before
-				 */
-				assertEquals("StructrScript: String should still have initial value!", "InitialString", Scripting.replaceVariables(ctx, t1, "${(get(this, 'aString'))}"));
+		try (final Tx tx = app.tx()) {
 
-				/**
-				 * then the JS-style scripting
-				 */
-				t1.setProperty(TestOne.aString, "InitialString");
-				t1.setProperty(TestOne.anInt, 42);
+			testNodeJavaScript = createTestNode(TestOne.class);
+			testNodeJavaScript.setProperty(TestOne.aString, "InitialString");
+			testNodeJavaScript.setProperty(TestOne.anInt, 42);
 
-				try {
-					Scripting.replaceVariables(ctx, t1, "${{ var t1 = Structr.get('this'); t1.aString = 'NewString'; t1.anInt = 'error'; }}");
-					fail("JavaScript: setting anInt to 'error' should cause an Exception");
-				} catch (FrameworkException fx) { }
+			tx.success();
 
-				/**
-				 * Test currently fails - I don't understand why "aString" equals "NewString" even though an exception was thrown before
-				 */
-				assertEquals("JavaScript: String should still have initial value!", "InitialString", Scripting.replaceVariables(ctx, t1, "${{ var t1 = Structr.get('this'); Structr.print(t1.aString); }}"));
+		} catch (FrameworkException ex) {
+
+			ex.printStackTrace();
+			fail("Unexpected exception");
+
+		}
+
+		try (final Tx tx = app.tx()) {
+
+			Scripting.replaceVariables(ctx, testNodeJavaScript, "${{ var t1 = Structr.get('this'); t1.aString = 'NewString'; t1.anInt = 'NOT_AN_INTEGER'; }}");
+			fail("StructrScript: setting anInt to 'NOT_AN_INTEGER' should cause an Exception");
+
+			tx.success();
+
+		} catch (FrameworkException expected) { }
+
+
+		try {
+
+			try (final Tx tx = app.tx()) {
+
+				assertEquals("JavaScript: String should still have initial value!", "InitialString", Scripting.replaceVariables(ctx, testNodeJavaScript, "${{ var t1 = Structr.get('this'); Structr.print(t1.aString); }}"));
 
 				tx.success();
 			}
@@ -1268,5 +1313,5 @@ public class ActionContextTest extends StructrTest {
 
 		}
 	}
-	
+
 }
