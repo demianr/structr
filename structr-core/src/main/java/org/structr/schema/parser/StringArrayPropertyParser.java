@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2010-2014 Morgner UG (haftungsbeschränkt)
+ * Copyright (C) 2010-2015 Morgner UG (haftungsbeschränkt)
  *
  * This file is part of Structr <http://structr.org>.
  *
@@ -69,7 +69,9 @@ public class StringArrayPropertyParser extends PropertySourceGenerator {
 			return;
 		}
 
-		setLocalValidator(", new SimpleRegexValidator(\""  + expression + "\")");
+		// ArrayProperty cannot have validator here because the validator
+		// doesn't support array types
+		// setLocalValidator(", new SimpleRegexValidator(\""  + expression + "\")");
 	}
 
 	@Override

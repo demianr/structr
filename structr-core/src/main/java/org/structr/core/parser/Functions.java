@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2010-2014 Morgner UG (haftungsbeschränkt)
+ * Copyright (C) 2010-2015 Morgner UG (haftungsbeschränkt)
  *
  * This file is part of Structr <http://structr.org>.
  *
@@ -89,6 +89,7 @@ import org.structr.core.Services;
 import org.structr.core.app.App;
 import org.structr.core.app.Query;
 import org.structr.core.app.StructrApp;
+import org.structr.core.converter.DateConverter;
 import org.structr.core.converter.PropertyConverter;
 import org.structr.core.entity.AbstractNode;
 import org.structr.core.entity.AbstractRelationship;
@@ -98,6 +99,7 @@ import org.structr.core.graph.NodeInterface;
 import org.structr.core.graph.RelationshipFactory;
 import org.structr.core.graph.RelationshipInterface;
 import org.structr.core.property.DateProperty;
+import org.structr.core.property.ISO8601DateProperty;
 import org.structr.core.property.PropertyKey;
 import org.structr.core.property.PropertyMap;
 import org.structr.core.property.StringProperty;
@@ -167,15 +169,15 @@ public class Functions {
 	public static final String ERROR_MESSAGE_ROUND = "Usage: ${round(value1 [, decimalPlaces])}. Example: ${round(2.345678, 2)}";
 	public static final String ERROR_MESSAGE_MAX = "Usage: ${max(value1, value2)}. Example: ${max(this.children, 10)}";
 	public static final String ERROR_MESSAGE_MIN = "Usage: ${min(value1, value2)}. Example: ${min(this.children, 5)}";
-	public static final String ERROR_MESSAGE_CONFIG    = "Usage: ${config(keyFromStructrConf)}. Example: ${config(\"base.path\")}";
+	public static final String ERROR_MESSAGE_CONFIG = "Usage: ${config(keyFromStructrConf)}. Example: ${config(\"base.path\")}";
 	public static final String ERROR_MESSAGE_CONFIG_JS = "Usage: ${{Structr.config(keyFromStructrConf)}}. Example: ${{Structr.config(\"base.path\")}}";
-	public static final String ERROR_MESSAGE_DATE_FORMAT    = "Usage: ${date_format(value, pattern)}. Example: ${date_format(this.creationDate, \"yyyy-MM-dd'T'HH:mm:ssZ\")}";
+	public static final String ERROR_MESSAGE_DATE_FORMAT = "Usage: ${date_format(value, pattern)}. Example: ${date_format(this.creationDate, \"yyyy-MM-dd'T'HH:mm:ssZ\")}";
 	public static final String ERROR_MESSAGE_DATE_FORMAT_JS = "Usage: ${{Structr.date_format(value, pattern)}}. Example: ${{Structr.date_format(Structr.get('this').creationDate, \"yyyy-MM-dd'T'HH:mm:ssZ\")}";
-	public static final String ERROR_MESSAGE_PARSE_DATE    = "Usage: ${parse_date(value, pattern)}. Example: ${parse_format(\"2014-01-01\", \"yyyy-MM-dd\")}";
+	public static final String ERROR_MESSAGE_PARSE_DATE = "Usage: ${parse_date(value, pattern)}. Example: ${parse_format(\"2014-01-01\", \"yyyy-MM-dd\")}";
 	public static final String ERROR_MESSAGE_PARSE_DATE_JS = "Usage: ${{Structr.parse_date(value, pattern)}}. Example: ${{Structr.parse_format(\"2014-01-01\", \"yyyy-MM-dd\")}}";
-	public static final String ERROR_MESSAGE_NUMBER_FORMAT    = "Usage: ${number_format(value, ISO639LangCode, pattern)}. Example: ${number_format(12345.6789, 'en', '#,##0.00')}";
+	public static final String ERROR_MESSAGE_NUMBER_FORMAT = "Usage: ${number_format(value, ISO639LangCode, pattern)}. Example: ${number_format(12345.6789, 'en', '#,##0.00')}";
 	public static final String ERROR_MESSAGE_NUMBER_FORMAT_JS = "Usage: ${{Structr.number_format(value, ISO639LangCode, pattern)}}. Example: ${{Structr.number_format(12345.6789, 'en', '#,##0.00')}}";
-	public static final String ERROR_MESSAGE_TEMPLATE    = "Usage: ${{Structr.template(name, locale, source)}}. Example: ${{Structr.template(\"TEXT_TEMPLATE_1\", \"en_EN\", Structr.get('this'))}}";
+	public static final String ERROR_MESSAGE_TEMPLATE = "Usage: ${{Structr.template(name, locale, source)}}. Example: ${{Structr.template(\"TEXT_TEMPLATE_1\", \"en_EN\", Structr.get('this'))}}";
 	public static final String ERROR_MESSAGE_TEMPLATE_JS = "Usage: ${template(name, locale, source)}. Example: ${template(\"TEXT_TEMPLATE_1\", \"en_EN\", this)}";
 	public static final String ERROR_MESSAGE_NOT = "Usage: ${not(bool1, bool2)}. Example: ${not(\"true\", \"true\")}";
 	public static final String ERROR_MESSAGE_AND = "Usage: ${and(bool1, bool2)}. Example: ${and(\"true\", \"true\")}";
@@ -192,11 +194,11 @@ public class Functions {
 	public static final String ERROR_MESSAGE_MERGE_PROPERTIES = "Usage: ${merge_properties(source, target , mergeKeys...)}. Example: ${merge_properties(this, parent, \"eMail\")}";
 	public static final String ERROR_MESSAGE_KEYS = "Usage: ${keys(entity, viewName)}. Example: ${keys(this, \"ui\")}";
 	public static final String ERROR_MESSAGE_EACH = "Usage: ${each(collection, expression)}. Example: ${each(this.children, \"set(this, \"email\", lower(get(this.email))))\")}";
-	public static final String ERROR_MESSAGE_STORE    = "Usage: ${store(key, value)}. Example: ${store('tmpUser', this.owner)}";
+	public static final String ERROR_MESSAGE_STORE = "Usage: ${store(key, value)}. Example: ${store('tmpUser', this.owner)}";
 	public static final String ERROR_MESSAGE_STORE_JS = "Usage: ${{Structr.store(key, value)}}. Example: ${{Structr.store('tmpUser', Structr.get('this').owner)}}";
-	public static final String ERROR_MESSAGE_RETRIEVE    = "Usage: ${retrieve(key)}. Example: ${retrieve('tmpUser')}";
+	public static final String ERROR_MESSAGE_RETRIEVE = "Usage: ${retrieve(key)}. Example: ${retrieve('tmpUser')}";
 	public static final String ERROR_MESSAGE_RETRIEVE_JS = "Usage: ${{Structr.retrieve(key)}}. Example: ${{retrieve('tmpUser')}}";
-	public static final String ERROR_MESSAGE_PRINT    = "Usage: ${print(objects...)}. Example: ${print(this.name, \"test\")}";
+	public static final String ERROR_MESSAGE_PRINT = "Usage: ${print(objects...)}. Example: ${print(this.name, \"test\")}";
 	public static final String ERROR_MESSAGE_PRINT_JS = "Usage: ${{Structr.print(objects...)}}. Example: ${{Structr.print(Structr.get('this').name, \"test\")}}";
 	public static final String ERROR_MESSAGE_READ = "Usage: ${read(filename)}. Example: ${read(\"text.xml\")}";
 	public static final String ERROR_MESSAGE_WRITE = "Usage: ${write(filename, value)}. Example: ${write(\"text.txt\", this.name)}";
@@ -246,7 +248,7 @@ public class Functions {
 	public static Object evaluate(final ActionContext actionContext, final GraphObject entity, final String expression) throws FrameworkException {
 
 		final String expressionWithoutNewlines = expression.replace('\n', ' ');
-		final StreamTokenizer tokenizer        = new StreamTokenizer(new StringReader(expressionWithoutNewlines));
+		final StreamTokenizer tokenizer = new StreamTokenizer(new StringReader(expressionWithoutNewlines));
 		tokenizer.eolIsSignificant(true);
 		tokenizer.ordinaryChar('.');
 		tokenizer.wordChars('_', '_');
@@ -580,7 +582,7 @@ public class Functions {
 
 						} else if (source.getClass().isArray()) {
 
-							list.addAll(Arrays.asList((Object[])source));
+							list.addAll(Arrays.asList((Object[]) source));
 
 						} else {
 
@@ -852,7 +854,7 @@ public class Functions {
 
 					} else if (sources[0].getClass().isArray()) {
 
-						return ArrayUtils.contains((Object[])sources[0], sources[1]);
+						return ArrayUtils.contains((Object[]) sources[0], sources[1]);
 					}
 				}
 
@@ -1338,7 +1340,7 @@ public class Functions {
 
 				if (sources[0] instanceof Collection) {
 
-					sourceSet.addAll((Collection)sources[0]);
+					sourceSet.addAll((Collection) sources[0]);
 
 					for (int cnt = 1; cnt < sources.length; cnt++) {
 
@@ -1346,7 +1348,7 @@ public class Functions {
 
 						if (source instanceof Collection) {
 
-							sourceSet.removeAll((Collection)source);
+							sourceSet.removeAll((Collection) source);
 
 						} else if (source != null) {
 
@@ -2110,9 +2112,9 @@ public class Functions {
 								}
 							}
 
-						} else if(source.getClass().isArray()) {
+						} else if (source.getClass().isArray()) {
 
-							list.addAll(Arrays.asList((Object[])source));
+							list.addAll(Arrays.asList((Object[]) source));
 
 						} else if (source != null && !NULL_STRING.equals(source)) {
 
@@ -2144,7 +2146,7 @@ public class Functions {
 
 					if (sources[0].getClass().isArray()) {
 
-						final Object[] arr = (Object[])sources[0];
+						final Object[] arr = (Object[]) sources[0];
 						if (arr.length > 0) {
 
 							return arr[0];
@@ -2175,7 +2177,7 @@ public class Functions {
 
 					if (sources[0].getClass().isArray()) {
 
-						final Object[] arr = (Object[])sources[0];
+						final Object[] arr = (Object[]) sources[0];
 						if (arr.length > 0) {
 
 							return arr[arr.length - 1];
@@ -2217,7 +2219,7 @@ public class Functions {
 
 					if (sources[0].getClass().isArray()) {
 
-						final Object[] arr = (Object[])sources[0];
+						final Object[] arr = (Object[]) sources[0];
 						if (pos <= arr.length) {
 
 							return arr[pos];
@@ -2356,14 +2358,13 @@ public class Functions {
 
 				} else if (arrayHasMinLengthAndAllElementsNotNull(sources, 1) && sources[0] instanceof GraphObjectMap) {
 
-					return new LinkedList<>(((GraphObjectMap)sources[0]).keySet());
+					return new LinkedList<>(((GraphObjectMap) sources[0]).keySet());
 
 				} else if (arrayHasMinLengthAndAllElementsNotNull(sources, 1) && sources[0] instanceof Map) {
 
-					return new LinkedList<>(((Map)sources[0]).keySet());
+					return new LinkedList<>(((Map) sources[0]).keySet());
 
 				}
-
 
 				return "";
 			}
@@ -2772,8 +2773,8 @@ public class Functions {
 				if (sources != null) {
 
 					final SecurityContext securityContext = ctx.getSecurityContext();
-					final ConfigurationProvider config    = StructrApp.getConfiguration();
-					final Query query                     = StructrApp.getInstance(securityContext).nodeQuery().sort(GraphObject.createdDate).order(false);
+					final ConfigurationProvider config = StructrApp.getConfiguration();
+					final Query query = StructrApp.getInstance(securityContext).nodeQuery().sort(GraphObject.createdDate).order(false);
 
 					// the type to query for
 					Class type = null;
@@ -2791,10 +2792,9 @@ public class Functions {
 					// extension for native javascript objects
 					if (sources.length == 2 && sources[1] instanceof Map) {
 
-						query.and(PropertyMap.inputTypeToJavaType(securityContext, type, (Map)sources[1]));
+						query.and(PropertyMap.inputTypeToJavaType(securityContext, type, (Map) sources[1]));
 
 					} else {
-
 
 						final Integer parameter_count = sources.length;
 
@@ -2803,7 +2803,7 @@ public class Functions {
 							throw new FrameworkException(400, "Invalid number of parameters: " + parameter_count + ". Should be uneven: " + ERROR_MESSAGE_FIND);
 						}
 
-						for (Integer c = 1; c < parameter_count; c+=2) {
+						for (Integer c = 1; c < parameter_count; c += 2) {
 
 							final PropertyKey key = config.getPropertyKeyForJSONName(type, sources[c].toString());
 
@@ -2816,7 +2816,7 @@ public class Functions {
 								}
 
 								final PropertyConverter inputConverter = key.inputConverter(securityContext);
-								Object value = sources[c+1];
+								Object value = sources[c + 1];
 
 								if (inputConverter != null) {
 
@@ -2847,9 +2847,9 @@ public class Functions {
 				if (sources != null) {
 
 					final SecurityContext securityContext = entity.getSecurityContext();
-					final ConfigurationProvider config    = StructrApp.getConfiguration();
-					final Query query                     = StructrApp.getInstance(securityContext).nodeQuery();
-					Class type                            = null;
+					final ConfigurationProvider config = StructrApp.getConfiguration();
+					final Query query = StructrApp.getInstance(securityContext).nodeQuery();
+					Class type = null;
 
 					if (sources.length >= 1 && sources[0] != null) {
 
@@ -2864,7 +2864,7 @@ public class Functions {
 					// extension for native javascript objects
 					if (sources.length == 2 && sources[1] instanceof Map) {
 
-						final PropertyMap map = PropertyMap.inputTypeToJavaType(securityContext, type, (Map)sources[1]);
+						final PropertyMap map = PropertyMap.inputTypeToJavaType(securityContext, type, (Map) sources[1]);
 						for (final Entry<PropertyKey, Object> entry : map.entrySet()) {
 
 							query.and(entry.getKey(), entry.getValue(), false);
@@ -2879,7 +2879,7 @@ public class Functions {
 							throw new FrameworkException(400, "Invalid number of parameters: " + parameter_count + ". Should be uneven: " + ERROR_MESSAGE_FIND);
 						}
 
-						for (Integer c = 1; c < parameter_count; c+=2) {
+						for (Integer c = 1; c < parameter_count; c += 2) {
 
 							final PropertyKey key = config.getPropertyKeyForJSONName(type, sources[c].toString());
 
@@ -2892,7 +2892,7 @@ public class Functions {
 								}
 
 								final PropertyConverter inputConverter = key.inputConverter(securityContext);
-								Object value = sources[c+1];
+								Object value = sources[c + 1];
 
 								if (inputConverter != null) {
 
@@ -2927,10 +2927,10 @@ public class Functions {
 				if (sources != null) {
 
 					final SecurityContext securityContext = entity.getSecurityContext();
-					final App app                         = StructrApp.getInstance(securityContext);
-					final ConfigurationProvider config    = StructrApp.getConfiguration();
-					PropertyMap propertyMap               = null;
-					Class type                            = null;
+					final App app = StructrApp.getInstance(securityContext);
+					final ConfigurationProvider config = StructrApp.getConfiguration();
+					PropertyMap propertyMap = null;
+					Class type = null;
 
 					if (sources.length >= 1 && sources[0] != null) {
 
@@ -2945,11 +2945,11 @@ public class Functions {
 					// extension for native javascript objects
 					if (sources.length == 2 && sources[1] instanceof Map) {
 
-						propertyMap = PropertyMap.inputTypeToJavaType(securityContext, type, (Map)sources[1]);
+						propertyMap = PropertyMap.inputTypeToJavaType(securityContext, type, (Map) sources[1]);
 
 					} else {
 
-						propertyMap                   = new PropertyMap();
+						propertyMap = new PropertyMap();
 						final Integer parameter_count = sources.length;
 
 						if (parameter_count % 2 == 0) {
@@ -2957,14 +2957,14 @@ public class Functions {
 							throw new FrameworkException(400, "Invalid number of parameters: " + parameter_count + ". Should be uneven: " + ERROR_MESSAGE_CREATE);
 						}
 
-						for (Integer c = 1; c < parameter_count; c+=2) {
+						for (Integer c = 1; c < parameter_count; c += 2) {
 
 							final PropertyKey key = config.getPropertyKeyForJSONName(type, sources[c].toString());
 
 							if (key != null) {
 
 								final PropertyConverter inputConverter = key.inputConverter(securityContext);
-								Object value = sources[c+1];
+								Object value = sources[c + 1];
 
 								if (inputConverter != null) {
 
@@ -3141,16 +3141,13 @@ public class Functions {
 							final NodeInterface t = rel.getTargetNode();
 
 							// We need to check if current user can see source and target node which is often not the case for OWNS or SECURITY rels
-							if (
-									s != null & t != null &&
-									( (s.equals(sourceNode) && t.equals(targetNode)) || (s.equals(targetNode) && t.equals(sourceNode)) )
-								) {
+							if (s != null & t != null
+								&& ((s.equals(sourceNode) && t.equals(targetNode)) || (s.equals(targetNode) && t.equals(sourceNode)))) {
 								return true;
 							}
 						}
 
 					} else if (sources.length == 3) {
-
 
 						// dont try to create the relClass because we would need to do that both ways!!! otherwise it just fails if the nodes are in the "wrong" order (see tests:890f)
 						final String relType = (String) sources[2];
@@ -3161,11 +3158,9 @@ public class Functions {
 							final NodeInterface t = rel.getTargetNode();
 
 							// We need to check if current user can see source and target node which is often not the case for OWNS or SECURITY rels
-							if (
-									s != null & t != null &&
-									rel.getRelType().name().equals(relType) &&
-									((s.equals(sourceNode) && t.equals(targetNode)) || (s.equals(targetNode) && t.equals(sourceNode)))
-								) {
+							if (s != null & t != null
+								&& rel.getRelType().name().equals(relType)
+								&& ((s.equals(sourceNode) && t.equals(targetNode)) || (s.equals(targetNode) && t.equals(sourceNode)))) {
 								return true;
 							}
 						}
@@ -3213,10 +3208,8 @@ public class Functions {
 							final NodeInterface t = rel.getTargetNode();
 
 							// We need to check if current user can see source and target node which is often not the case for OWNS or SECURITY rels
-							if (
-									s != null & t != null &&
-									s.equals(sourceNode) && t.equals(targetNode)
-								) {
+							if (s != null & t != null
+								&& s.equals(sourceNode) && t.equals(targetNode)) {
 								return true;
 							}
 						}
@@ -3232,11 +3225,9 @@ public class Functions {
 							final NodeInterface t = rel.getTargetNode();
 
 							// We need to check if current user can see source and target node which is often not the case for OWNS or SECURITY rels
-							if (
-									s != null & t != null &&
-									rel.getRelType().name().equals(relType) &&
-									s.equals(sourceNode) && t.equals(targetNode)
-								) {
+							if (s != null & t != null
+								&& rel.getRelType().name().equals(relType)
+								&& s.equals(sourceNode) && t.equals(targetNode)) {
 								return true;
 							}
 						}
@@ -3284,10 +3275,8 @@ public class Functions {
 							final NodeInterface t = rel.getTargetNode();
 
 							// We need to check if current user can see source and target node which is often not the case for OWNS or SECURITY rels
-							if (
-									s != null & t != null &&
-									s.equals(targetNode) && t.equals(sourceNode)
-								) {
+							if (s != null & t != null
+								&& s.equals(targetNode) && t.equals(sourceNode)) {
 								return true;
 							}
 						}
@@ -3303,11 +3292,9 @@ public class Functions {
 							final NodeInterface t = rel.getTargetNode();
 
 							// We need to check if current user can see source and target node which is often not the case for OWNS or SECURITY rels
-							if (
-									s != null & t != null &&
-									rel.getRelType().name().equals(relType) &&
-									s.equals(targetNode) && t.equals(sourceNode)
-								) {
+							if (s != null & t != null
+								&& rel.getRelType().name().equals(relType)
+								&& s.equals(targetNode) && t.equals(sourceNode)) {
 								return true;
 							}
 						}
@@ -3357,10 +3344,8 @@ public class Functions {
 							final NodeInterface t = rel.getTargetNode();
 
 							// We need to check if current user can see source and target node which is often not the case for OWNS or SECURITY rels
-							if (
-									s != null && t != null &&
-									( (s.equals(sourceNode) && t.equals(targetNode)) || (s.equals(targetNode) && t.equals(sourceNode)) )
-								) {
+							if (s != null && t != null
+								&& ((s.equals(sourceNode) && t.equals(targetNode)) || (s.equals(targetNode) && t.equals(sourceNode)))) {
 								list.add(rel);
 							}
 						}
@@ -3376,11 +3361,9 @@ public class Functions {
 							final NodeInterface t = rel.getTargetNode();
 
 							// We need to check if current user can see source and target node which is often not the case for OWNS or SECURITY rels
-							if (
-									s != null && t != null &&
-									rel.getRelType().name().equals(relType) &&
-									( (s.equals(sourceNode) && t.equals(targetNode)) || (s.equals(targetNode) && t.equals(sourceNode)) )
-								) {
+							if (s != null && t != null
+								&& rel.getRelType().name().equals(relType)
+								&& ((s.equals(sourceNode) && t.equals(targetNode)) || (s.equals(targetNode) && t.equals(sourceNode)))) {
 								list.add(rel);
 							}
 						}
@@ -3429,10 +3412,8 @@ public class Functions {
 							final NodeInterface t = rel.getTargetNode();
 
 							// We need to check if current user can see source and target node which is often not the case for OWNS or SECURITY rels
-							if (
-									s != null && t != null &&
-									s.equals(sourceNode) && t.equals(targetNode)
-								) {
+							if (s != null && t != null
+								&& s.equals(sourceNode) && t.equals(targetNode)) {
 								list.add(rel);
 							}
 						}
@@ -3448,11 +3429,9 @@ public class Functions {
 							final NodeInterface t = rel.getTargetNode();
 
 							// We need to check if current user can see source and target node which is often not the case for OWNS or SECURITY rels
-							if (
-									s != null && t != null &&
-									rel.getRelType().name().equals(relType) &&
-									s.equals(sourceNode) && t.equals(targetNode)
-								) {
+							if (s != null && t != null
+								&& rel.getRelType().name().equals(relType)
+								&& s.equals(sourceNode) && t.equals(targetNode)) {
 								list.add(rel);
 							}
 						}
@@ -3501,10 +3480,8 @@ public class Functions {
 							final NodeInterface t = rel.getTargetNode();
 
 							// We need to check if current user can see source and target node which is often not the case for OWNS or SECURITY rels
-							if (
-									s != null && t != null &&
-									s.equals(targetNode) && t.equals(sourceNode)
-								) {
+							if (s != null && t != null
+								&& s.equals(targetNode) && t.equals(sourceNode)) {
 								list.add(rel);
 							}
 						}
@@ -3520,11 +3497,9 @@ public class Functions {
 							final NodeInterface t = rel.getTargetNode();
 
 							// We need to check if current user can see source and target node which is often not the case for OWNS or SECURITY rels
-							if (
-									s != null && t != null &&
-									rel.getRelType().name().equals(relType) &&
-									s.equals(targetNode) && t.equals(sourceNode)
-								) {
+							if (s != null && t != null
+								&& rel.getRelType().name().equals(relType)
+								&& s.equals(targetNode) && t.equals(sourceNode)) {
 								list.add(rel);
 							}
 						}
@@ -3720,7 +3695,7 @@ public class Functions {
 
 					if (sources[0] instanceof AbstractNode) {
 
-						((AbstractNode)sources[0]).unlockReadOnlyPropertiesOnce();
+						((AbstractNode) sources[0]).unlockReadOnlyPropertiesOnce();
 
 					} else {
 
@@ -3857,23 +3832,32 @@ public class Functions {
 
 	protected static Double getDoubleOrNull(final Object obj) {
 
-		if (obj instanceof Date) {
+		try {
 
-			return Double.valueOf(((Date) obj).getTime());
+			if (obj instanceof Date) {
 
-		} else if (obj instanceof Number) {
+				return (double) ((Date) obj).getTime();
 
-			return ((Number) obj).doubleValue();
+			} else if (obj instanceof Number) {
 
-		} else {
+				return ((Number) obj).doubleValue();
 
-			try {
-				return Double.valueOf(obj.toString());
+			} else {
 
-			} catch (Throwable t) {
+				Date date = DatePropertyParser.parseISO8601DateString(obj.toString());
+				
+				if (date != null) {
+				
+					return (double) (date).getTime();
+				}
 
-				t.printStackTrace();
+				return Double.parseDouble(obj.toString());
+
 			}
+
+		} catch (Throwable t) {
+
+			t.printStackTrace();
 		}
 
 		return null;
@@ -3982,12 +3966,12 @@ public class Functions {
 
 				destination.put(new StringProperty(key), obj);
 
-				recursivelyConvertMapToGraphObjectMap(obj, map, depth+1);
+				recursivelyConvertMapToGraphObjectMap(obj, map, depth + 1);
 
 			} else if (value instanceof Collection) {
 
-				final List list              = new LinkedList();
-				final Collection collection  = (Collection)value;
+				final List list = new LinkedList();
+				final Collection collection = (Collection) value;
 
 				for (final Object obj : collection) {
 
@@ -3996,7 +3980,7 @@ public class Functions {
 						final GraphObjectMap container = new GraphObjectMap();
 						list.add(container);
 
-						recursivelyConvertMapToGraphObjectMap(container, (Map<String, Object>)obj, depth+1);
+						recursivelyConvertMapToGraphObjectMap(container, (Map<String, Object>) obj, depth + 1);
 
 					} else {
 
@@ -4032,9 +4016,9 @@ public class Functions {
 
 		return value;
 	}
-	
+
 	private static int compareBooleanBoolean(final Object o1, final Object o2) {
-		
+
 		final Boolean value1 = (Boolean) o1;
 		final Boolean value2 = (Boolean) o2;
 
@@ -4042,7 +4026,7 @@ public class Functions {
 	}
 
 	private static int compareNumberNumber(final Object o1, final Object o2) {
-		
+
 		final Double value1 = getDoubleForComparison(o1);
 		final Double value2 = getDoubleForComparison(o2);
 
@@ -4050,7 +4034,7 @@ public class Functions {
 	}
 
 	private static int compareStringString(final Object o1, final Object o2) {
-		
+
 		final String value1 = (String) o1;
 		final String value2 = (String) o2;
 
@@ -4058,7 +4042,7 @@ public class Functions {
 	}
 
 	private static int compareDateDate(final Object o1, final Object o2) {
-		
+
 		final Date value1 = (Date) o1;
 		final Date value2 = (Date) o2;
 
@@ -4066,7 +4050,7 @@ public class Functions {
 	}
 
 	private static int compareDateString(final Object o1, final Object o2) {
-		
+
 		final String value1 = DatePropertyParser.format((Date) o1, DateProperty.DEFAULT_FORMAT);
 		final String value2 = (String) o2;
 
@@ -4074,25 +4058,25 @@ public class Functions {
 	}
 
 	private static int compareStringDate(final Object o1, final Object o2) {
-		
+
 		final String value1 = (String) o1;
 		final String value2 = DatePropertyParser.format((Date) o2, DateProperty.DEFAULT_FORMAT);
 
 		return value1.compareTo(value2);
 	}
-	
+
 	private static int compareBooleanString(final Object o1, final Object o2) {
-		
+
 		return -1;
 	}
 
 	private static int compareStringBoolean(final Object o1, final Object o2) {
-		
+
 		return -1;
 	}
 
 	private static int compareNumberString(final Object o1, final Object o2) {
-		
+
 		final Double value1 = getDoubleForComparison(o1);
 		final Double value2 = Double.parseDouble((String) o2);
 
@@ -4100,7 +4084,7 @@ public class Functions {
 	}
 
 	private static int compareStringNumber(final Object o1, final Object o2) {
-		
+
 		final Double value1 = Double.parseDouble((String) o1);
 		final Double value2 = getDoubleForComparison(o2);
 
@@ -4108,7 +4092,7 @@ public class Functions {
 	}
 
 	private static boolean gt(final Object o1, final Object o2) {
-		
+
 		if (o1 instanceof Number && o2 instanceof Number) {
 
 			return compareNumberNumber(o1, o2) > 0;
@@ -4153,7 +4137,7 @@ public class Functions {
 	}
 
 	private static boolean lt(final Object o1, final Object o2) {
-		
+
 		if (o1 instanceof Number && o2 instanceof Number) {
 
 			return compareNumberNumber(o1, o2) < 0;
@@ -4198,7 +4182,7 @@ public class Functions {
 	}
 
 	private static boolean eq(final Object o1, final Object o2) {
-		
+
 		if (o1 instanceof Number && o2 instanceof Number) {
 
 			return compareNumberNumber(o1, o2) == 0;
